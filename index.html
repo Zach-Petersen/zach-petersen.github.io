@@ -259,7 +259,7 @@
     <section id="home" class="hero">
       <div class="hero-inner">
         <h1 class="name">Zachary Petersen</h1>
-        <p class="subtitle">Nuclear Engineering • Physics • Astrophysics • University of Wisconsin–Madison</p>
+        <p class="subtitle">Nuclear Engineering • Physics • Astrophysics | University of Wisconsin–Madison</p>
 
         <div class="contact-card">
           <h2>Highlights</h2>
@@ -267,7 +267,7 @@
             <div><strong>Majors:</strong> Nuclear Engineering, Physics, and Astrophysics</div>
             <div><strong>Focus:</strong> Nuclear security, nonproliferation, and nuclear war effects</div>
             <div><strong>Experience:</strong> University of Wisconsin–Madison, Lawrence Livermore National Laboratory, Oak Ridge National Laboratory</div>
-            <div><strong>Tools:</strong> Python, MCNP, radiation transport modeling, space systems analysis</div>
+            <div><strong>Tools:</strong> Python, MCNP, SCALE, High-Perfomance Computing </div>
           </div>
           <p style="margin: 14px 0 0; color: var(--muted);">
             I am a Nuclear Engineering student at the University of Wisconsin–Madison with research interests in nuclear security, nonproliferation, and nuclear war effects. My work spans computational modeling of radiation transport, shielding, and high-altitude nuclear environments using tools such as Python and MCNP.
@@ -307,29 +307,61 @@
 
         <div class="item">
           <div class="item-title">Oak Ridge National Laboratory</div>
-          <div class="item-meta">Research Internship</div>
+          <div class="item-meta">Summer Undergraduate Laboratory Internship - 2024 </div>
           <div>
-            Conducted shielding analysis involving boron-containing systems and radiation transport applications.
+            Used MCNP to perform shielding and criticality calculations for HALEU Transportation Canisters. Investigated various source definitions and perturbations to the 30B-10 canister. 
           </div>
         </div>
       </div>
-    </section>
+   <section id="publications" class="content-section" hidden>
+  <div class="section-card">
+    <h2>Publications</h2>
 
-    <section id="publications" class="content-section" hidden>
-      <div class="section-card">
-        <h2>Publications</h2>
-        <div class="item">
-          <div>Publications, posters, and presentations coming soon.</div>
-        </div>
+    <div class="item">
+      <div class="item-title">
+        <strong>Petersen, Z.</strong>, Gaylard, A., Lang, A., Celik, C., Metwally, W.
       </div>
-    </section>
+      <div class="item-meta">
+        American Nuclear Society (ANS), 2024 • Conference Paper
+      </div>
+      <div>
+        “Perturbations to the 30B-10 Cylinder Criticality Control System.”
+        <a href="rod-optimization-ans-abstract.pdf" target="_blank">[PDF]</a>
+        <span style="cursor:pointer; color: var(--accent);" onclick="toggleAbstract('abs1')">[Abstract]</span>
+      </div>
+
+      <div id="abs1" style="display:none; margin-top:10px; color: var(--muted); font-size:0.92rem; line-height:1.6;">
+        This study investigates modifications to the 30B-10 cylinder criticality control system (CCS) to optimize HALEU fuel transport. Using MCNP simulations, the impact of control rod geometry and radius on keff and uranium mass capacity is analyzed. Results demonstrate that strategic removal and resizing of rods can increase U-235 capacity while maintaining safety constraints.
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-title">
+        <strong>Petersen, Z.</strong>, Gaylard, A., Lang, A., Celik, C., Metwally, W.
+      </div>
+      <div class="item-meta">
+        American Nuclear Society (ANS), 2024 • Conference Paper
+      </div>
+      <div>
+        “Improving Transport Efficiency of HALEU Fuel with a Modified Criticality Control System in the 30B-10.”
+        <a href="rod-worth-ans-abstract.pdf" target="_blank">[PDF]</a>
+        <span style="cursor:pointer; color: var(--accent);" onclick="toggleAbstract('abs2')">[Abstract]</span>
+      </div>
+
+      <div id="abs2" style="display:none; margin-top:10px; color: var(--muted); font-size:0.92rem; line-height:1.6;">
+        This work evaluates how removing criticality control rods in the 30B-10 canister affects keff and increases HALEU transport capacity. A simplified analytical model is developed to approximate reactivity changes and uranium mass gain, enabling efficient design exploration prior to detailed Monte Carlo simulations.
+      </div>
+    </div>
+
+  </div>
+</section>
 
     <section id="notes" class="content-section" hidden>
       <div class="section-card">
         <h2>Notes</h2>
         <div class="item">
           <div class="item-title">Projects and Technical Writeups</div>
-          <div class="item-meta">Coming soon</div>
+          <div class="item-meta"> coming soon. </div>
           <div>
             This section can include course notes, project summaries, repositories, and PDF reports.
           </div>
@@ -357,6 +389,11 @@
     const body = document.body;
     const toggle = document.getElementById('themeToggle');
     const savedTheme = localStorage.getItem('theme');
+    
+    function toggleAbstract(id) {
+    const el = document.getElementById(id);
+    el.style.display = el.style.display === "none" ? "block" : "none";
+    }
 
     if (savedTheme === 'light') {
       body.classList.add('light');
