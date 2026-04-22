@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name | Academic Profile</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #b70101;
+      --border: #e5e7eb;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: min(1000px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 0.98rem;
+    }
+
+    .hero {
+      padding: 56px 0 28px;
+    }
+
+    .hero-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .profile-img {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: #eef2f7;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 2.2rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--accent);
+      transition: 0.2s ease;
+      font-weight: 600;
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .button.primary:hover {
+      text-decoration: none;
+      opacity: 0.92;
+    }
+
+    .button.secondary {
+      background: white;
+      color: var(--accent);
+    }
+
+    section {
+      padding: 18px 0 12px;
+    }
+
+    .section-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.45rem;
+    }
+
+    .item {
+      padding: 14px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .item:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .item-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .item-meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 28px 0 42px;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 760px) {
+      .hero-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .profile-img {
+        margin: 0 auto;
+      }
+
+      .cta-row,
+      .nav {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#home" class="brand">Your Name</a>
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#notes">Notes</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="home" class="hero">
+      <div class="hero-card">
+        <img src="profile.jpg" alt="Profile photo" class="profile-img" />
+        <div>
+          <h1>Your Name</h1>
+          <div class="subtitle">Nuclear Engineering Student at the University of Wisconsin–Madison</div>
+          <p>
+            I am a student researcher interested in nuclear security, nonproliferation,
+            and nuclear war effects. My work includes computational modeling using tools
+            such as Python and MCNP, along with research related to radiation transport,
+            shielding, and space-system effects.
+          </p>
+          <div class="cta-row">
+            <a class="button primary" href="mailto:your_email@wisc.edu">Contact Me</a>
+            <a class="button secondary" href="cv.pdf" target="_blank">CV</a>
+            <a class="button secondary" href="#research">View Research</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="section-card">
+        <h2>Research</h2>
+        <div class="item">
+          <div class="item-title">Project Title 1</div>
+          <div class="item-meta">University of Wisconsin–Madison</div>
+          <div>
+            Briefly describe your current research project, methods, and broader impact.
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-title">Project Title 2</div>
+          <div class="item-meta">Oak Ridge National Laboratory / Lawrence Livermore National Laboratory</div>
+          <div>
+            Add another research summary here with a sentence or two about your role.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <div class="section-card">
+        <h2>Publications</h2>
+        <div class="item">
+          <div class="item-title">Author, A., Your Name, B., &amp; Collaborator, C.</div>
+          <div class="item-meta">Journal or Conference, Year</div>
+          <div>
+            “Title of publication.” <a href="#">[PDF]</a>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-title">Add more papers, posters, or reports here</div>
+          <div class="item-meta">Venue, Year</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="notes">
+      <div class="section-card">
+        <h2>Notes</h2>
+        <div class="item">
+          <div class="item-title">Course Notes or Technical Writeups</div>
+          <div>
+            Link your notes, summaries, or project pages here.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="teaching">
+      <div class="section-card">
+        <h2>Teaching</h2>
+        <div class="item">
+          <div class="item-title">Teaching Assistant / Mentor Role</div>
+          <div class="item-meta">Course Name, Semester</div>
+          <div>
+            Add teaching, tutoring, outreach, or mentoring experience here.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-card">
+        <h2>Contact Info</h2>
+        <p><strong>Email:</strong> your_email@wisc.edu</p>
+        <p><strong>GitHub:</strong> <a href="https://github.com/yourusername">github.com/yourusername</a></p>
+        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/yourusername/">linkedin.com/in/yourusername</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Your Name. Built with GitHub Pages.
+  </footer>
+</body>
+</html>
