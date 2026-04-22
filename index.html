@@ -80,7 +80,7 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: 32px;
-      font-size: 0.95rem;
+      font-size: 0.93rem;
       font-weight: 600;
       letter-spacing: 0.01em;
     }
@@ -112,9 +112,9 @@
     }
 
     .name {
-      font-size: clamp(2.1rem, 5.2vw, 3.4rem);
-      font-weight: 700;
-      letter-spacing: -0.05em;
+      font-size: clamp(2.4rem, 7vw, 4.6rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
       margin: 0 0 14px;
     }
 
@@ -147,7 +147,7 @@
       gap: 9px;
       margin-bottom: 18px;
       color: var(--muted);
-      font-size: 0.98rem;
+      font-size: 0.95rem;
     }
 
     .cta-row {
@@ -216,7 +216,7 @@
 
     .item-meta {
       color: var(--muted);
-      font-size: 0.93rem;
+      font-size: 0.96rem;
       margin-bottom: 8px;
     }
 
@@ -247,11 +247,9 @@
     <div class="container nav-wrap">
       <div class="nav-spacer"></div>
       <nav class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#research">Research</a>
-        <a href="#publications">Publications</a>
-        <a href="#notes">Notes</a>
-        <a href="#contact">Contact</a>
+        <a href="#home" data-section="home">Home</a>
+        <a href="#research" data-section="research">Research</a>
+        <a href="#publications" data-section="publications">Publications</a>
       </nav>
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">☀️ Light</button>
     </div>
@@ -261,25 +259,33 @@
     <section id="home" class="hero">
       <div class="hero-inner">
         <h1 class="name">Zachary Petersen</h1>
-        <p class="subtitle">Nuclear Engineering • University of Wisconsin–Madison</p>
+        <p class="subtitle">Nuclear Engineering • Physics • Astrophysics • University of Wisconsin–Madison</p>
 
         <div class="contact-card">
-          <h2>Contact Info</h2>
+          <h2>Highlights</h2>
           <div class="contact-grid">
-            <div><strong>Email:</strong> <a href="mailto:zachary.petersen@wisc.edu">zachary.petersen@wisc.edu</a></div>
-            <div><strong>GitHub:</strong> <a href="https://github.com/Zach-Petersen" target="_blank">github.com/Zach-Petersen</a></div>
-            <div><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/uw-zach" target="_blank">linkedin.com/in/uw-zach</a></div>
+            <div><strong>Majors:</strong> Nuclear Engineering, Physics, and Astrophysics</div>
+            <div><strong>Focus:</strong> Nuclear security, nonproliferation, and nuclear war effects</div>
+            <div><strong>Experience:</strong> University of Wisconsin–Madison, Lawrence Livermore National Laboratory, Oak Ridge National Laboratory</div>
+            <div><strong>Tools:</strong> Python, MCNP, radiation transport modeling, space systems analysis</div>
           </div>
+          <p style="margin: 14px 0 0; color: var(--muted);">
+            I am a Nuclear Engineering student at the University of Wisconsin–Madison with research interests in nuclear security, nonproliferation, and nuclear war effects. My work spans computational modeling of radiation transport, shielding, and high-altitude nuclear environments using tools such as Python and MCNP.
+          </p>
+          <p style="margin: 10px 0 0; color: var(--muted);">
+            I have conducted research at Lawrence Livermore National Laboratory and Oak Ridge National Laboratory, contributing to dose validation and shielding analysis efforts. I plan to pursue a Ph.D. in nuclear security to support global safety and risk reduction.
+          </p>
           <div class="cta-row">
             <a class="button primary" href="mailto:zachary.petersen@wisc.edu">Contact Me</a>
             <a class="button" href="cv.pdf" target="_blank">CV</a>
-            <a class="button" href="#research">View Research</a>
+            <a class="button" href="#research" data-section="research">Research</a>
+            <a class="button" href="#publications" data-section="publications">Publications</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="research" class="content-section">
+    <section id="research" class="content-section" hidden>
       <div class="section-card">
         <h2>Research</h2>
 
@@ -309,7 +315,7 @@
       </div>
     </section>
 
-    <section id="publications" class="content-section">
+    <section id="publications" class="content-section" hidden>
       <div class="section-card">
         <h2>Publications</h2>
         <div class="item">
@@ -318,7 +324,7 @@
       </div>
     </section>
 
-    <section id="notes" class="content-section">
+    <section id="notes" class="content-section" hidden>
       <div class="section-card">
         <h2>Notes</h2>
         <div class="item">
@@ -331,7 +337,7 @@
       </div>
     </section>
 
-    <section id="contact" class="content-section">
+    <section id="contact" class="content-section" hidden>
       <div class="section-card">
         <h2>Contact</h2>
         <div class="item">
@@ -365,6 +371,36 @@
       localStorage.setItem('theme', isLight ? 'light' : 'dark');
       toggle.textContent = isLight ? '🌙 Dark' : '☀️ Light';
     });
+
+    const sections = {
+      home: document.getElementById('home'),
+      research: document.getElementById('research'),
+      publications: document.getElementById('publications')
+    };
+
+    function showSection(name) {
+      Object.entries(sections).forEach(([key, section]) => {
+        if (!section) return;
+        section.hidden = key !== name;
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('[data-section]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const sectionName = link.getAttribute('data-section');
+        showSection(sectionName);
+        history.replaceState(null, '', '#' + sectionName);
+      });
+    });
+
+    const hash = window.location.hash.replace('#', '');
+    if (hash && sections[hash]) {
+      showSection(hash);
+    } else {
+      showSection('home');
+    }
   </script>
 </body>
 </html>
