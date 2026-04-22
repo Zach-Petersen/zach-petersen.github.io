@@ -3,49 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zachary Petersen | Academic Profile</title>
+  <title>Zachary Petersen</title>
   <style>
     :root {
       --bg: #0f1117;
-      --panel: rgba(23, 26, 33, 0.72);
-      --panel-2: rgba(29, 33, 43, 0.58);
-      --text: #e7eaf0;
-      --muted: #a9b0bd;
+      --card: #171b22;
+      --card-2: #1d2330;
+      --text: #e8edf5;
+      --muted: #a5afbf;
       --accent: #6ea8fe;
-      --border: rgba(120, 138, 170, 0.22);
-      --shadow: 0 18px 50px rgba(0, 0, 0, 0.34);
-      --maxw: 960px;
+      --border: #2b3342;
+      --maxw: 900px;
     }
 
     body.light {
-      --bg: #f5f7fb;
-      --panel: rgba(255, 255, 255, 0.82);
-      --panel-2: rgba(241, 244, 249, 0.72);
-      --text: #1b2230;
-      --muted: #5f6b7b;
-      --accent: #4f7fe8;
-      --border: rgba(120, 138, 170, 0.20);
-      --shadow: 0 18px 48px rgba(22, 30, 50, 0.10);
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --card-2: #eef3fa;
+      --text: #1d2430;
+      --muted: #5f6c80;
+      --accent: #3f78e0;
+      --border: #d8e0ec;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(110, 168, 254, 0.12), transparent 28%),
-        radial-gradient(circle at top right, rgba(140, 194, 255, 0.08), transparent 24%),
-        var(--bg);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background: var(--bg);
       color: var(--text);
-      line-height: 1.65;
-      transition: background 0.25s ease, color 0.25s ease;
+      line-height: 1.6;
     }
 
     a {
@@ -57,122 +45,98 @@
       text-decoration: underline;
     }
 
+    header {
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 10;
+    }
+
     .container {
       width: min(var(--maxw), 92%);
       margin: 0 auto;
     }
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(16px);
-      background: color-mix(in srgb, var(--bg) 76%, transparent);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-wrap {
+    .nav {
+      min-height: 72px;
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      min-height: 74px;
-    }
-
-    .nav-spacer {
-      min-width: 120px;
     }
 
     .nav-links {
       display: flex;
+      gap: 28px;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 32px;
       font-size: 0.95rem;
       font-weight: 600;
-      letter-spacing: 0.01em;
     }
 
-    .theme-toggle {
+    .toggle {
       justify-self: end;
       border: 1px solid var(--border);
-      background: var(--panel);
+      background: var(--card);
       color: var(--text);
-      padding: 10px 15px;
       border-radius: 999px;
-      backdrop-filter: blur(14px);
+      padding: 9px 14px;
       cursor: pointer;
-      font-size: 0.95rem;
-      box-shadow: var(--shadow);
     }
 
     .hero {
-      min-height: calc(100vh - 74px);
+      min-height: calc(100vh - 72px);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 64px 0 56px;
+      padding: 48px 0;
     }
 
     .hero-inner {
-      text-align: center;
       width: 100%;
+      text-align: center;
     }
 
-    .name {
-      font-size: clamp(2.4rem, 7vw, 4.6rem);
-      font-weight: 800;
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2.5rem, 7vw, 4.6rem);
       letter-spacing: -0.04em;
-      margin: 0 0 14px;
     }
 
     .subtitle {
       color: var(--muted);
-      font-size: 1.02rem;
       margin: 0 0 28px;
+      font-size: 1.02rem;
     }
 
-    .home-card,
-    .section-card {
-      width: min(720px, 100%);
-      margin: 0 auto;
-      background: linear-gradient(180deg, var(--panel), var(--panel-2));
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+    .card {
+      background: linear-gradient(180deg, var(--card), var(--card-2));
       border: 1px solid var(--border);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
+      border-radius: 20px;
       padding: 24px;
       text-align: left;
+      width: min(720px, 100%);
+      margin: 0 auto;
     }
 
-    .section-card {
-      width: 100%;
-      margin-top: 8px;
-      padding: 26px;
-    }
-
-    .home-card h2,
-    .section-card h2 {
+    .card h2 {
       margin: 0 0 14px;
       font-size: 1.15rem;
-      letter-spacing: -0.02em;
     }
 
-    .home-card p {
+    .card p {
       margin: 0 0 12px;
       color: var(--muted);
-      font-size: 0.98rem;
     }
 
     .contact-list {
-      margin-top: 14px;
       display: grid;
       gap: 8px;
+      margin-top: 16px;
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.96rem;
     }
 
-    .cta-row {
+    .button-row {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
@@ -180,39 +144,35 @@
     }
 
     .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 15px;
-      border-radius: 14px;
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 12px;
       border: 1px solid var(--border);
-      background: var(--panel);
+      background: var(--card);
       color: var(--text);
+      text-decoration: none;
       font-weight: 600;
-      text-decoration: none;
-      transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
       cursor: pointer;
-    }
-
-    .button:hover {
-      text-decoration: none;
-      transform: translateY(-1px);
-      box-shadow: 0 10px 24px rgba(110, 168, 254, 0.10);
     }
 
     .button.primary {
       background: var(--accent);
       border-color: var(--accent);
-      color: #ffffff;
+      color: white;
     }
 
-    section.content-section {
-      padding: 32px 0;
+    .section {
+      display: none;
+      padding: 36px 0;
+    }
+
+    .section.active {
+      display: block;
     }
 
     .item {
-      padding: 14px 0;
       border-top: 1px solid var(--border);
+      padding: 14px 0;
     }
 
     .item:first-of-type {
@@ -223,12 +183,11 @@
     .item-title {
       font-weight: 700;
       margin-bottom: 4px;
-      font-size: 1rem;
     }
 
     .item-meta {
       color: var(--muted);
-      font-size: 0.96rem;
+      font-size: 0.95rem;
       margin-bottom: 8px;
     }
 
@@ -236,80 +195,63 @@
       display: none;
       margin-top: 10px;
       color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.6;
-    }
-
-    .abstract-toggle {
-      cursor: pointer;
-      color: var(--accent);
-      margin-left: 8px;
+      font-size: 0.93rem;
     }
 
     footer {
       text-align: center;
       color: var(--muted);
-      padding: 26px 0 38px;
+      padding: 24px 0 36px;
       font-size: 0.9rem;
-      opacity: 0.9;
     }
 
     @media (max-width: 760px) {
-      .nav-wrap {
+      .nav {
         grid-template-columns: 1fr;
         gap: 12px;
         padding: 14px 0;
       }
 
-      .nav-spacer {
-        display: none;
-      }
-
-      .theme-toggle {
+      .toggle {
         justify-self: center;
       }
 
       .nav-links {
         gap: 16px;
+        flex-wrap: wrap;
       }
 
       .hero {
         min-height: auto;
-        padding-top: 72px;
-      }
-
-      .cta-row {
-        justify-content: flex-start;
+        padding-top: 64px;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="container nav-wrap">
-      <div class="nav-spacer"></div>
+    <div class="container nav">
+      <div></div>
       <nav class="nav-links">
-        <a href="#home" data-section="home">Home</a>
-        <a href="#research" data-section="research">Research</a>
-        <a href="#publications" data-section="publications">Publications</a>
+        <a href="#" onclick="showSection('home'); return false;">Home</a>
+        <a href="#" onclick="showSection('research'); return false;">Research</a>
+        <a href="#" onclick="showSection('publications'); return false;">Publications</a>
       </nav>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">☀️ Light</button>
+      <button class="toggle" id="themeToggle">☀️ Light</button>
     </div>
   </header>
 
   <main class="container">
-    <section id="home" class="hero">
+    <section id="home" class="section active hero">
       <div class="hero-inner">
-        <h1 class="name">Zachary Petersen</h1>
+        <h1>Zachary Petersen</h1>
         <p class="subtitle">Nuclear Engineering • Physics • Astrophysics | University of Wisconsin–Madison</p>
 
-        <div class="home-card">
+        <div class="card">
           <h2>About</h2>
-
           <p>
             I am a Nuclear Engineering student at the University of Wisconsin–Madison with research interests in nuclear security, nonproliferation, and nuclear war effects. My work spans computational modeling of radiation transport, shielding, and high-altitude nuclear environments using tools such as Python and MCNP.
           </p>
-
           <p>
             I have conducted research at Lawrence Livermore National Laboratory and Oak Ridge National Laboratory, contributing to dose validation, shielding analysis, and criticality calculations. I plan to pursue a Ph.D. in nuclear security to support global safety and risk reduction.
           </p>
@@ -321,18 +263,18 @@
             <div><strong>Tools:</strong> Python, MCNP, SCALE, High-Performance Computing</div>
           </div>
 
-          <div class="cta-row">
+          <div class="button-row">
             <a class="button primary" href="mailto:zachary.petersen@wisc.edu">Contact Me</a>
             <a class="button" href="cv.pdf" target="_blank">CV</a>
-            <a class="button" href="#research" data-section="research">Research</a>
-            <a class="button" href="#publications" data-section="publications">Publications</a>
+            <button class="button" onclick="showSection('research')">Research</button>
+            <button class="button" onclick="showSection('publications')">Publications</button>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="research" class="content-section" hidden>
-      <div class="section-card">
+    <section id="research" class="section">
+      <div class="card">
         <h2>Research</h2>
 
         <div class="item">
@@ -361,21 +303,17 @@
       </div>
     </section>
 
-    <section id="publications" class="content-section" hidden>
-      <div class="section-card">
+    <section id="publications" class="section">
+      <div class="card">
         <h2>Publications</h2>
 
         <div class="item">
-          <div class="item-title">
-            <strong>Petersen, Z.</strong>, Gaylard, A., Lang, A., Celik, C., Metwally, W.
-          </div>
-          <div class="item-meta">
-            American Nuclear Society (ANS), 2024 • Conference Paper
-          </div>
+          <div class="item-title"><strong>Petersen, Z.</strong>, Gaylard, A., Lang, A., Celik, C., Metwally, W.</div>
+          <div class="item-meta">American Nuclear Society (ANS), 2024 • Conference Paper</div>
           <div>
             “Perturbations to the 30B-10 Cylinder Criticality Control System.”
             <a href="rod-optimization-ans-abstract.pdf" target="_blank">[PDF]</a>
-            <span class="abstract-toggle" onclick="toggleAbstract('abs1')">[Abstract]</span>
+            <a href="#" onclick="toggleAbstract('abs1'); return false;">[Abstract]</a>
           </div>
           <div id="abs1" class="abstract">
             This study investigates modifications to the 30B-10 cylinder criticality control system (CCS) to optimize HALEU fuel transport. Using MCNP simulations, the impact of control rod geometry and radius on keff and uranium mass capacity is analyzed. Results demonstrate that strategic removal and resizing of rods can increase U-235 capacity while maintaining safety constraints.
@@ -383,16 +321,12 @@
         </div>
 
         <div class="item">
-          <div class="item-title">
-            <strong>Petersen, Z.</strong>, Gaylard, A., Lang, A., Celik, C., Metwally, W.
-          </div>
-          <div class="item-meta">
-            American Nuclear Society (ANS), 2024 • Conference Paper
-          </div>
+          <div class="item-title"><strong>Petersen, Z.</strong>, Gaylard, A., Lang, A., Celik, C., Metwally, W.</div>
+          <div class="item-meta">American Nuclear Society (ANS), 2024 • Conference Paper</div>
           <div>
             “Improving Transport Efficiency of HALEU Fuel with a Modified Criticality Control System in the 30B-10.”
             <a href="rod-worth-ans-abstract.pdf" target="_blank">[PDF]</a>
-            <span class="abstract-toggle" onclick="toggleAbstract('abs2')">[Abstract]</span>
+            <a href="#" onclick="toggleAbstract('abs2'); return false;">[Abstract]</a>
           </div>
           <div id="abs2" class="abstract">
             This work evaluates how removing criticality control rods in the 30B-10 canister affects keff and increases HALEU transport capacity. A simplified analytical model is developed to approximate reactivity changes and uranium mass gain, enabling efficient design exploration prior to detailed Monte Carlo simulations.
@@ -407,20 +341,29 @@
   </footer>
 
   <script>
+    function showSection(id) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => section.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleAbstract(id) {
+      const el = document.getElementById(id);
+      if (el.style.display === 'block') {
+        el.style.display = 'none';
+      } else {
+        el.style.display = 'block';
+      }
+    }
+
     const body = document.body;
     const toggle = document.getElementById('themeToggle');
     const savedTheme = localStorage.getItem('theme');
 
-    function toggleAbstract(id) {
-      const el = document.getElementById(id);
-      el.style.display = el.style.display === 'block' ? 'none' : 'block';
-    }
-
     if (savedTheme === 'light') {
       body.classList.add('light');
       toggle.textContent = '🌙 Dark';
-    } else {
-      toggle.textContent = '☀️ Light';
     }
 
     toggle.addEventListener('click', () => {
@@ -429,36 +372,6 @@
       localStorage.setItem('theme', isLight ? 'light' : 'dark');
       toggle.textContent = isLight ? '🌙 Dark' : '☀️ Light';
     });
-
-    const sections = {
-      home: document.getElementById('home'),
-      research: document.getElementById('research'),
-      publications: document.getElementById('publications')
-    };
-
-    function showSection(name) {
-      Object.entries(sections).forEach(([key, section]) => {
-        if (!section) return;
-        section.hidden = key !== name;
-      });
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    document.querySelectorAll('[data-section]').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const sectionName = link.getAttribute('data-section');
-        showSection(sectionName);
-        history.replaceState(null, '', '#' + sectionName);
-      });
-    });
-
-    const hash = window.location.hash.replace('#', '');
-    if (hash && sections[hash]) {
-      showSection(hash);
-    } else {
-      showSection('home');
-    }
   </script>
 </body>
 </html>
