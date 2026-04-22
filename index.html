@@ -1,377 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zachary Petersen</title>
-  <style>
-    :root {
-      --bg: #0f1117;
-      --card: #171b22;
-      --card-2: #1d2330;
-      --text: #e8edf5;
-      --muted: #a5afbf;
-      --accent: #6ea8fe;
-      --border: #2b3342;
-      --maxw: 900px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zachary Petersen</title>
 
-    body.light {
-      --bg: #f4f7fb;
-      --card: #ffffff;
-      --card-2: #eef3fa;
-      --text: #1d2430;
-      --muted: #5f6c80;
-      --accent: #3f78e0;
-      --border: #d8e0ec;
-    }
+<style>
+:root {
+  --bg:#0f1117;
+  --card:#171b22;
+  --card2:#1d2330;
+  --text:#e8edf5;
+  --muted:#a5afbf;
+  --accent:#6ea8fe;
+  --border:#2b3342;
+}
 
-    * { box-sizing: border-box; }
+body.light {
+  --bg:#f4f7fb;
+  --card:#ffffff;
+  --card2:#eef3fa;
+  --text:#1d2430;
+  --muted:#5f6c80;
+  --accent:#3f78e0;
+  --border:#d8e0ec;
+}
 
-    body {
-      margin: 0;
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
+body {
+  margin:0;
+  font-family:Inter,Arial;
+  background:var(--bg);
+  color:var(--text);
+}
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
+a { color:var(--accent); text-decoration:none; }
 
-    a:hover {
-      text-decoration: underline;
-    }
+header {
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  background:var(--bg);
+}
 
-    header {
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      background: var(--bg);
-      z-index: 10;
-    }
+.container {
+  width:90%;
+  max-width:900px;
+  margin:auto;
+}
 
-    .container {
-      width: min(var(--maxw), 92%);
-      margin: 0 auto;
-    }
+.nav {
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  min-height:70px;
+}
 
-    .nav {
-      min-height: 72px;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-    }
+.nav-links {
+  display:flex;
+  gap:30px;
+  justify-content:center;
+  font-weight:600;
+}
 
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      justify-content: center;
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
+.toggle {
+  justify-self:end;
+  border:1px solid var(--border);
+  background:var(--card);
+  padding:8px 12px;
+  border-radius:999px;
+  cursor:pointer;
+}
 
-    .toggle {
-      justify-self: end;
-      border: 1px solid var(--border);
-      background: var(--card);
-      color: var(--text);
-      border-radius: 999px;
-      padding: 9px 14px;
-      cursor: pointer;
-    }
+.hero {
+  min-height:calc(100vh - 70px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
 
-    .hero {
-      min-height: calc(100vh - 72px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 48px 0;
-    }
+.card {
+  background:linear-gradient(180deg,var(--card),var(--card2));
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:24px;
+}
 
-    .hero-inner {
-      width: 100%;
-      text-align: center;
-    }
+h1 {
+  font-size:clamp(2.5rem,7vw,4.5rem);
+  text-align:center;
+}
 
-    h1 {
-      margin: 0 0 12px;
-      font-size: clamp(2.5rem, 7vw, 4.6rem);
-      letter-spacing: -0.04em;
-    }
+.subtitle {
+  text-align:center;
+  color:var(--muted);
+  margin-bottom:25px;
+}
 
-    .subtitle {
-      color: var(--muted);
-      margin: 0 0 28px;
-      font-size: 1.02rem;
-    }
+.item {
+  border-top:1px solid var(--border);
+  padding:12px 0;
+}
 
-    .card {
-      background: linear-gradient(180deg, var(--card), var(--card-2));
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 24px;
-      text-align: left;
-      width: min(720px, 100%);
-      margin: 0 auto;
-    }
+.item:first-of-type { border-top:none; }
 
-    .card h2 {
-      margin: 0 0 14px;
-      font-size: 1.15rem;
-    }
+.item-meta {
+  color:var(--muted);
+  font-size:0.95rem;
+}
 
-    .card p {
-      margin: 0 0 12px;
-      color: var(--muted);
-    }
+.abstract {
+  display:none;
+  margin-top:10px;
+  color:var(--muted);
+}
 
-    .contact-list {
-      display: grid;
-      gap: 8px;
-      margin-top: 16px;
-      color: var(--muted);
-      font-size: 0.96rem;
-    }
+.section { display:none; }
+.section.active { display:block; }
 
-    .button-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
-    }
+.button {
+  padding:8px 12px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:var(--card);
+  cursor:pointer;
+}
 
-    .button {
-      display: inline-block;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: var(--card);
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .button.primary {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: white;
-    }
-
-    .section {
-      display: none;
-      padding: 36px 0;
-    }
-
-    .section.active {
-      display: block;
-    }
-
-    .item {
-      border-top: 1px solid var(--border);
-      padding: 14px 0;
-    }
-
-    .item:first-of-type {
-      border-top: none;
-      padding-top: 0;
-    }
-
-    .item-title {
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .item-meta {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: 8px;
-    }
-
-    .abstract {
-      display: none;
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 0.93rem;
-    }
-
-    footer {
-      text-align: center;
-      color: var(--muted);
-      padding: 24px 0 36px;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 760px) {
-      .nav {
-        grid-template-columns: 1fr;
-        gap: 12px;
-        padding: 14px 0;
-      }
-
-      .toggle {
-        justify-self: center;
-      }
-
-      .nav-links {
-        gap: 16px;
-        flex-wrap: wrap;
-      }
-
-      .hero {
-        min-height: auto;
-        padding-top: 64px;
-      }
-    }
-  </style>
+footer {
+  text-align:center;
+  padding:20px;
+  color:var(--muted);
+}
+</style>
 </head>
+
 <body>
-  <header>
-    <div class="container nav">
-      <div></div>
-      <nav class="nav-links">
-        <a href="#" onclick="showSection('home'); return false;">Home</a>
-        <a href="#" onclick="showSection('research'); return false;">Research</a>
-        <a href="#" onclick="showSection('publications'); return false;">Publications</a>
-      </nav>
-      <button class="toggle" id="themeToggle">☀️ Light</button>
-    </div>
-  </header>
 
-  <main class="container">
-    <section id="home" class="section active hero">
-      <div class="hero-inner">
-        <h1>Zachary Petersen</h1>
-        <p class="subtitle">Nuclear Engineering • Physics • Astrophysics | University of Wisconsin–Madison</p>
+<header>
+<div class="container nav">
+  <div></div>
+  <div class="nav-links">
+    <a href="#" onclick="showSection('home');return false;">Home</a>
+    <a href="#" onclick="showSection('research');return false;">Research</a>
+    <a href="#" onclick="showSection('publications');return false;">Publications</a>
+  </div>
+  <button class="toggle" id="themeToggle">☀️</button>
+</div>
+</header>
 
-        <div class="card">
-          <h2>About</h2>
-          <p>
-            I am a Nuclear Engineering student at the University of Wisconsin–Madison with research interests in nuclear security, nonproliferation, and nuclear war effects. My work spans computational modeling of radiation transport, shielding, and high-altitude nuclear environments using tools such as Python and MCNP.
-          </p>
-          <p>
-            I have conducted research at Lawrence Livermore National Laboratory and Oak Ridge National Laboratory, contributing to dose validation, shielding analysis, and criticality calculations. I plan to pursue a Ph.D. in nuclear security to support global safety and risk reduction.
-          </p>
+<main class="container">
 
-          <div class="contact-list">
-            <div><strong>Email:</strong> <a href="mailto:zachary.petersen@wisc.edu">zachary.petersen@wisc.edu</a></div>
-            <div><strong>GitHub:</strong> <a href="https://github.com/Zach-Petersen" target="_blank">github.com/Zach-Petersen</a></div>
-            <div><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/uw-zach" target="_blank">linkedin.com/in/uw-zach</a></div>
-            <div><strong>Tools:</strong> Python, MCNP, SCALE, High-Performance Computing</div>
-          </div>
+<!-- HOME -->
+<section id="home" class="section active hero">
+<div>
+<h1>Zachary Petersen</h1>
+<p class="subtitle">Nuclear Engineering • Physics • Astrophysics | UW–Madison</p>
 
-          <div class="button-row">
-            <a class="button primary" href="mailto:zachary.petersen@wisc.edu">Contact Me</a>
-            <a class="button" href="cv.pdf" target="_blank">CV</a>
-            <button class="button" onclick="showSection('research')">Research</button>
-            <button class="button" onclick="showSection('publications')">Publications</button>
-          </div>
-        </div>
-      </div>
-    </section>
+<div class="card">
+<p>
+I am a Nuclear Engineering student at the University of Wisconsin–Madison with research interests in nuclear security, nonproliferation, and nuclear war effects.
+</p>
 
-    <section id="research" class="section">
-      <div class="card">
-        <h2>Research</h2>
+<p>
+My work focuses on computational modeling of radiation transport, shielding, and high-altitude nuclear environments using Python and MCNP.
+</p>
 
-        <div class="item">
-          <div class="item-title">High-Altitude Nuclear Explosions and Space Systems</div>
-          <div class="item-meta">EVIDENT Lab, University of Wisconsin–Madison</div>
-          <div>
-            Modeling the effects of high-altitude nuclear explosions on space systems, including gamma-ray attenuation, satellite disruption, electromagnetic pulse generation, and charged particle trapping in the Van Allen belts. This work contributes to broader efforts to develop realistic nuclear war-effects simulation tools.
-          </div>
-        </div>
+<p>
+I have conducted research at Lawrence Livermore National Laboratory and Oak Ridge National Laboratory and plan to pursue a Ph.D. in nuclear security.
+</p>
 
-        <div class="item">
-          <div class="item-title">Lawrence Livermore National Laboratory</div>
-          <div class="item-meta">Defense Science and Technology Internship | Summers 2025 and 2026</div>
-          <div>
-            Modeled far-field radiation transport from the atomic bombings of Hiroshima and Nagasaki to validate historical dose data. This work supported strategic deterrence and survivability analysis.
-          </div>
-        </div>
+<p><strong>Email:</strong> zachary.petersen@wisc.edu</p>
 
-        <div class="item">
-          <div class="item-title">Oak Ridge National Laboratory</div>
-          <div class="item-meta">Summer Undergraduate Laboratory Internship | 2024</div>
-          <div>
-            Used MCNP to perform shielding and criticality calculations for HALEU transportation canisters. Investigated source definitions and perturbations to the 30B-10 canister.
-          </div>
-        </div>
-      </div>
-    </section>
+<div style="margin-top:15px;">
+<a class="button" href="cv.pdf">CV</a>
+<button class="button" onclick="showSection('research')">Research</button>
+<button class="button" onclick="showSection('publications')">Publications</button>
+</div>
 
-    <section id="publications" class="section">
-      <div class="card">
-        <h2>Publications</h2>
+</div>
+</div>
+</section>
 
-        <div class="item">
-          <div class="item-title"><strong>Petersen, Z.</strong>, Gaylard, A., Lang, A., Celik, C., Metwally, W.</div>
-          <div class="item-meta">American Nuclear Society (ANS), 2024 • Conference Paper</div>
-          <div>
-            “Perturbations to the 30B-10 Cylinder Criticality Control System.”
-            <a href="rod-optimization-ans-abstract.pdf" target="_blank">[PDF]</a>
-            <a href="#" onclick="toggleAbstract('abs1'); return false;">[Abstract]</a>
-          </div>
-          <div id="abs1" class="abstract">
-            This study investigates modifications to the 30B-10 cylinder criticality control system (CCS) to optimize HALEU fuel transport. Using MCNP simulations, the impact of control rod geometry and radius on keff and uranium mass capacity is analyzed. Results demonstrate that strategic removal and resizing of rods can increase U-235 capacity while maintaining safety constraints.
-          </div>
-        </div>
+<!-- RESEARCH -->
+<section id="research" class="section">
+<div class="card">
+<h2>Research</h2>
 
-        <div class="item">
-          <div class="item-title"><strong>Petersen, Z.</strong>, Gaylard, A., Lang, A., Celik, C., Metwally, W.</div>
-          <div class="item-meta">American Nuclear Society (ANS), 2024 • Conference Paper</div>
-          <div>
-            “Improving Transport Efficiency of HALEU Fuel with a Modified Criticality Control System in the 30B-10.”
-            <a href="rod-worth-ans-abstract.pdf" target="_blank">[PDF]</a>
-            <a href="#" onclick="toggleAbstract('abs2'); return false;">[Abstract]</a>
-          </div>
-          <div id="abs2" class="abstract">
-            This work evaluates how removing criticality control rods in the 30B-10 canister affects keff and increases HALEU transport capacity. A simplified analytical model is developed to approximate reactivity changes and uranium mass gain, enabling efficient design exploration prior to detailed Monte Carlo simulations.
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+<div class="item">
+<div><strong>High-Altitude Nuclear Explosions and Space Systems</strong></div>
+<div class="item-meta">UW–Madison</div>
+<p>Modeling radiation, EMP, and satellite disruption.</p>
+</div>
 
-  <footer>
-    © 2026 Zachary Petersen
-  </footer>
+<div class="item">
+<div><strong>Lawrence Livermore National Laboratory</strong></div>
+<div class="item-meta">Internship</div>
+<p>Radiation transport modeling of nuclear effects.</p>
+</div>
 
-  <script>
-    function showSection(id) {
-      const sections = document.querySelectorAll('.section');
-      sections.forEach(section => section.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+<div class="item">
+<div><strong>Oak Ridge National Laboratory</strong></div>
+<div class="item-meta">SULI 2024</div>
+<p>MCNP shielding and criticality analysis.</p>
+</div>
 
-    function toggleAbstract(id) {
-      const el = document.getElementById(id);
-      if (el.style.display === 'block') {
-        el.style.display = 'none';
-      } else {
-        el.style.display = 'block';
-      }
-    }
+</div>
+</section>
 
-    const body = document.body;
-    const toggle = document.getElementById('themeToggle');
-    const savedTheme = localStorage.getItem('theme');
+<!-- PUBLICATIONS -->
+<section id="publications" class="section">
+<div class="card">
+<h2>Publications</h2>
 
-    if (savedTheme === 'light') {
-      body.classList.add('light');
-      toggle.textContent = '🌙 Dark';
-    }
+<div class="item">
+<div><strong>Perturbations to the 30B-10 Cylinder Criticality Control System</strong></div>
+<div class="item-meta"><strong>Petersen, Z.</strong> et al. • ANS 2024</div>
+<a href="rod-optimization-ans-abstract.pdf">[PDF]</a>
+<a href="#" onclick="toggleAbstract('a1');return false;">[Abstract]</a>
+<div id="a1" class="abstract">
+MCNP analysis of control rod modifications for HALEU transport optimization.
+</div>
+</div>
 
-    toggle.addEventListener('click', () => {
-      body.classList.toggle('light');
-      const isLight = body.classList.contains('light');
-      localStorage.setItem('theme', isLight ? 'light' : 'dark');
-      toggle.textContent = isLight ? '🌙 Dark' : '☀️ Light';
-    });
-  </script>
+<div class="item">
+<div><strong>Improving Transport Efficiency of HALEU Fuel...</strong></div>
+<div class="item-meta"><strong>Petersen, Z.</strong> et al. • ANS 2024</div>
+<a href="rod-worth-ans-abstract.pdf">[PDF]</a>
+<a href="#" onclick="toggleAbstract('a2');return false;">[Abstract]</a>
+<div id="a2" class="abstract">
+Analytical + Monte Carlo modeling of reactivity and transport efficiency.
+</div>
+</div>
+
+</div>
+</section>
+
+</main>
+
+<footer>© 2026 Zachary Petersen</footer>
+
+<script>
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function toggleAbstract(id){
+  const el=document.getElementById(id);
+  el.style.display=el.style.display==='block'?'none':'block';
+}
+
+const toggle=document.getElementById('themeToggle');
+toggle.onclick=()=>{
+  document.body.classList.toggle('light');
+}
+</script>
+
 </body>
 </html>
