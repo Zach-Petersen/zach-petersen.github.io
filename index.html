@@ -6,29 +6,24 @@
   <title>Zachary Petersen | Academic Profile</title>
   <style>
     :root {
-      --bg: #f7f8fb;
-      --card: #ffffff;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --accent: #b70101;
-      --border: #e5e7eb;
-      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --bg: #ffffff;
+      --text: #222;
+      --muted: #666;
+      --accent: #8b0000;
+      --line: #d9d9d9;
+      --maxw: 980px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
+      font-family: Georgia, "Times New Roman", serif;
       color: var(--text);
-      line-height: 1.6;
+      background: var(--bg);
+      line-height: 1.65;
     }
 
     a {
@@ -36,170 +31,145 @@
       text-decoration: none;
     }
 
-    a:hover {
-      text-decoration: underline;
-    }
+    a:hover { text-decoration: underline; }
 
     .container {
-      width: min(1000px, 92%);
+      width: min(var(--maxw), 92%);
       margin: 0 auto;
     }
 
     header {
-      background: #ffffff;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
     }
 
     .nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 0;
+      padding: 18px 0;
       gap: 20px;
     }
 
     .brand {
-      font-size: 1.15rem;
+      font-size: 1.55rem;
       font-weight: 700;
       color: var(--text);
+      letter-spacing: 0.2px;
     }
 
     .nav-links {
       display: flex;
       flex-wrap: wrap;
       gap: 18px;
-      font-size: 0.98rem;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.95rem;
     }
 
     .hero {
-      padding: 56px 0 28px;
+      padding: 42px 0 22px;
     }
 
-    .hero-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      box-shadow: var(--shadow);
-      padding: 32px;
+    .hero-wrap {
       display: grid;
       grid-template-columns: 220px 1fr;
-      gap: 30px;
-      align-items: center;
+      gap: 34px;
+      align-items: start;
     }
 
     .profile-img {
       width: 220px;
-      height: 220px;
+      height: 260px;
       object-fit: cover;
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      background: #eef2f7;
+      border: 1px solid var(--line);
+      display: block;
     }
 
     h1 {
-      margin: 0 0 8px;
+      margin: 0 0 10px;
       font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1.15;
     }
 
     .subtitle {
-      font-size: 1.05rem;
+      font-family: Arial, Helvetica, sans-serif;
       color: var(--muted);
+      font-size: 1rem;
       margin-bottom: 16px;
     }
 
-    .cta-row {
+    .hero p {
+      margin: 0 0 14px;
+      font-size: 1.04rem;
+    }
+
+    .link-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 10px 16px;
-      border-radius: 10px;
-      border: 1px solid var(--accent);
-      transition: 0.2s ease;
-      font-weight: 600;
-    }
-
-    .button.primary {
-      background: var(--accent);
-      color: white;
-    }
-
-    .button.primary:hover {
-      text-decoration: none;
-      opacity: 0.92;
-    }
-
-    .button.secondary {
-      background: white;
-      color: var(--accent);
+      gap: 14px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.96rem;
+      margin-top: 10px;
     }
 
     section {
-      padding: 18px 0 12px;
-    }
-
-    .section-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      box-shadow: var(--shadow);
-      padding: 28px;
-      margin-bottom: 24px;
+      padding: 16px 0;
     }
 
     h2 {
-      margin-top: 0;
-      font-size: 1.45rem;
+      font-size: 1.35rem;
+      margin: 0 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
     }
 
     .item {
-      padding: 14px 0;
-      border-top: 1px solid var(--border);
-    }
-
-    .item:first-of-type {
-      border-top: none;
-      padding-top: 0;
+      margin-bottom: 18px;
     }
 
     .item-title {
       font-weight: 700;
-      margin-bottom: 4px;
+      font-size: 1.02rem;
+      margin-bottom: 3px;
     }
 
     .item-meta {
       color: var(--muted);
-      font-size: 0.95rem;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.93rem;
       margin-bottom: 6px;
     }
 
+    ul.clean {
+      margin: 8px 0 0 20px;
+      padding: 0;
+    }
+
+    li { margin-bottom: 8px; }
+
     footer {
-      text-align: center;
+      margin-top: 28px;
+      border-top: 1px solid var(--line);
+      padding: 20px 0 36px;
       color: var(--muted);
-      padding: 28px 0 42px;
-      font-size: 0.95rem;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.92rem;
     }
 
     @media (max-width: 760px) {
-      .hero-card {
+      .hero-wrap {
         grid-template-columns: 1fr;
-        text-align: center;
       }
 
       .profile-img {
-        margin: 0 auto;
+        width: min(220px, 100%);
+        height: auto;
       }
 
-      .cta-row,
       .nav {
-        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
   </style>
@@ -207,9 +177,8 @@
 <body>
   <header>
     <div class="container nav">
-      <a href="#home" class="brand">Your Name</a>
+      <a href="#home" class="brand">Zachary Petersen</a>
       <nav class="nav-links">
-        <a href="#home">Home</a>
         <a href="#research">Research</a>
         <a href="#publications">Publications</a>
         <a href="#notes">Notes</a>
@@ -220,91 +189,80 @@
 
   <main class="container">
     <section id="home" class="hero">
-      <div class="hero-card">
-        <img src="profile.jpg" alt="Profile photo" class="profile-img" />
+      <div class="hero-wrap">
+        <img src="profile.jpg" alt="Profile photo of Zachary Petersen" class="profile-img" />
         <div>
-          <h1>Your Name</h1>
+          <h1>Zachary Petersen</h1>
           <div class="subtitle">Nuclear Engineering Student | University of Wisconsin–Madison</div>
           <p>
-            I am a student researcher interested in nuclear security, nonproliferation,
-            and nuclear war effects. My work includes computational modeling using tools
-            such as Python and MCNP, along with research related to radiation transport,
-            shielding, and space-system effects.
+            I am a Nuclear Engineering student at the University of Wisconsin–Madison with research interests in nuclear security, nonproliferation, and nuclear war effects. My work spans computational modeling of radiation transport, shielding, and high-altitude nuclear environments using tools such as Python and MCNP.
           </p>
-          <div class="cta-row">
-            <a class="button primary" href="mailto:your_email@wisc.edu">Contact Me</a>
-            <a class="button secondary" href="cv.pdf" target="_blank">CV</a>
-            <a class="button secondary" href="#research">View Research</a>
+          <p>
+            I have conducted research at Lawrence Livermore National Laboratory and Oak Ridge National Laboratory, contributing to dose validation and shielding analysis efforts. I plan to pursue a Ph.D. in nuclear security to support global safety and risk reduction.
+          </p>
+          <div class="link-row">
+            <a href="mailto:zachary.petersen@wisc.edu">Email</a>
+            <a href="https://github.com/Zach-Petersen" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/uw-zach" target="_blank">LinkedIn</a>
+            <a href="cv.pdf" target="_blank">CV</a>
           </div>
         </div>
       </div>
     </section>
 
     <section id="research">
-      <div class="section-card">
-        <h2>Research</h2>
-        <div class="item">
-          <div class="item-title">High Altitude Nuclear Exposions</div>
-          <div class="item-meta"> Evident at University of Wisconsin–Madison Nuclear Engineering & Engineering Physics Department</div>
-          <div>
-           Modeling the effects of high-altitude nuclear explosions including gamma attenuation, destruction of satellites, EMP creation, and electron trapping in the Van Allen Belts. This work is incorporated with a larger effort to create a nuclear war simulator that is a comprehensive view of the devastation that occurs from realistic war scenarios.
-          </div>
+      <h2>Research</h2>
+
+      <div class="item">
+        <div class="item-title">High-Altitude Nuclear Explosions and Space Systems</div>
+        <div class="item-meta">EVIDENT Lab, University of Wisconsin–Madison</div>
+        <div>
+          Modeling the effects of high-altitude nuclear explosions on space systems, including gamma-ray attenuation, satellite disruption, electromagnetic pulse generation, and charged particle trapping in the Van Allen belts. This work contributes to broader efforts to develop realistic nuclear war-effects simulation tools.
         </div>
-        <div class="item">
-          <div class="item-title">National Lab Internships</div>
-          <div class="item-meta">Lawerence Livermore National Laboratory</div>
-          <div>
-            Student Researcher at Lawrence Livermore National Laboratory – Defense Science and Technology Internship, Summer 2025 and Summer 2026. Modeled the far field radiation transport from war time bombings of Hiroshima and Nagasaki with the goal to validate historical dose data. This work supported strategic deterrence and survivability efforts at the laboratory.
-          </div>
-          <div class="item-meta">Oak Ridge National Laboratory</div>
-          <div>
-            Shielding analysis of 30B-10 cylinders
-          </div>
+      </div>
+
+      <div class="item">
+        <div class="item-title">Lawrence Livermore National Laboratory</div>
+        <div class="item-meta">Defense Science and Technology Internship | Summers 2025 and 2026</div>
+        <div>
+          Modeled far-field radiation transport from the atomic bombings of Hiroshima and Nagasaki to validate historical dose data. This work supported strategic deterrence and survivability analysis.
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-title">Oak Ridge National Laboratory</div>
+        <div class="item-meta">Research Internship</div>
+        <div>
+          Conducted shielding analysis involving boron-containing systems and radiation transport applications.
         </div>
       </div>
     </section>
 
     <section id="publications">
-      <div class="section-card">
-        <h2>Publications</h2>
-        <div class="item">
-          <div class="item-title">Author, A., Your Name, B., &amp; Collaborator, C.</div>
-          <div class="item-meta">Journal or Conference, Year</div>
-          <div>
-            “Title of publication.” <a href="#">[PDF]</a>
-          </div>
-        </div>
-        <div class="item">
-          <div class="item-title">Add more papers, posters, or reports here</div>
-          <div class="item-meta">Venue, Year</div>
-        </div>
+      <h2>Publications</h2>
+      <div class="item">
+        <div>Publications, posters, and presentations coming soon.</div>
       </div>
     </section>
 
     <section id="notes">
-      <div class="section-card">
-        <h2>Notes</h2>
-        <div class="item">
-          <div class="item-title">Course Notes or Technical Writeups</div>
-          <div>
-            Link your notes, summaries, or project pages here.
-          </div>
-        </div>
-      </div>
+      <h2>Notes and Projects</h2>
+      <ul class="clean">
+        <li>Add course notes, technical writeups, or project summaries here.</li>
+        <li>You can also link GitHub repositories or PDF reports.</li>
+      </ul>
     </section>
 
     <section id="contact">
-      <div class="section-card">
-        <h2>Contact Info</h2>
-        <p><strong>Email:</strong> zachary.petersen@wisc.edu</p>
-        <p><strong>GitHub:</strong> <a href="https://github.com/Zach-Petersen">github.com/Zach-Petersen</a></p>
-        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/uw-zach">linkedin.com/in/uw-zach</a></p>
-      </div>
+      <h2>Contact</h2>
+      <p><strong>Email:</strong> <a href="mailto:zachary.petersen@wisc.edu">zachary.petersen@wisc.edu</a></p>
+      <p><strong>GitHub:</strong> <a href="https://github.com/Zach-Petersen" target="_blank">github.com/Zach-Petersen</a></p>
+      <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/uw-zach" target="_blank">linkedin.com/in/uw-zach</a></p>
     </section>
   </main>
 
   <footer>
-    © 2026 Zachary Petersen. Built with GitHub Pages.
+    © 2026 Zachary Petersen
   </footer>
 </body>
 </html>
