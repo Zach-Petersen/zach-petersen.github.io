@@ -17,16 +17,6 @@
       --maxw: 980px;
     }
 
-    body.light {
-      --bg: #f4f7fb;
-      --card: rgba(255, 255, 255, 0.82);
-      --card-2: rgba(238, 243, 250, 0.78);
-      --text: #1d2430;
-      --muted: #5f6c80;
-      --accent: #3f78e0;
-      --border: rgba(120, 140, 180, 0.22);
-    }
-
     * {
       box-sizing: border-box;
     }
@@ -71,15 +61,11 @@
       backdrop-filter: blur(14px);
     }
 
-    body.light header {
-      background: rgba(244, 247, 251, 0.78);
-    }
-
     .nav {
       min-height: 72px;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
+      display: flex;
       align-items: center;
+      justify-content: center;
     }
 
     .nav-links {
@@ -89,16 +75,6 @@
       font-weight: 600;
       font-size: 0.95rem;
       letter-spacing: 0.01em;
-    }
-
-    .toggle {
-      justify-self: end;
-      border: 1px solid var(--border);
-      background: var(--card);
-      color: var(--text);
-      padding: 9px 14px;
-      border-radius: 999px;
-      cursor: pointer;
     }
 
     .section {
@@ -111,6 +87,8 @@
 
     .hero {
       min-height: calc(100vh - 72px);
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
       position: relative;
       display: flex;
       align-items: center;
@@ -124,40 +102,23 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(to bottom, rgba(8, 10, 18, 0.18), rgba(8, 10, 18, 0.44)),
+        linear-gradient(to bottom, rgba(8, 10, 18, 0.10), rgba(8, 10, 18, 0.28)),
         url("hero-bg.png");
-      background-size: cover;
-      background-position: center;
+      background-size: contain;
+      background-position: center top;
       background-repeat: no-repeat;
-      transform: scale(1.04);
-      animation: heroZoom 20s ease-in-out infinite alternate,
-                 heroPan 24s ease-in-out infinite alternate;
+      animation: heroFloat 18s ease-in-out infinite alternate;
       z-index: -3;
-      will-change: transform, background-position;
-    }
-
-    body.light .hero-bg {
-      background-image:
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.08), rgba(244, 247, 251, 0.34)),
-        url("hero-bg.png");
+      opacity: 0.95;
     }
 
     .hero-overlay {
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at 78% 34%, rgba(255, 126, 40, 0.18), transparent 18%),
-        radial-gradient(circle at 68% 55%, rgba(181, 73, 255, 0.10), transparent 26%),
-        linear-gradient(to bottom, rgba(6, 10, 18, 0.18), rgba(6, 10, 18, 0.55) 72%, var(--bg) 100%);
+        linear-gradient(to bottom, rgba(6, 10, 18, 0.12), rgba(6, 10, 18, 0.38) 68%, var(--bg) 100%);
       z-index: -2;
       pointer-events: none;
-    }
-
-    body.light .hero-overlay {
-      background:
-        radial-gradient(circle at 78% 34%, rgba(255, 126, 40, 0.10), transparent 18%),
-        radial-gradient(circle at 68% 55%, rgba(181, 73, 255, 0.06), transparent 26%),
-        linear-gradient(to bottom, rgba(255,255,255,0.04), rgba(244,247,251,0.18) 72%, var(--bg) 100%);
     }
 
     .hero::after {
@@ -166,7 +127,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      height: 220px;
+      height: 180px;
       background: linear-gradient(to bottom, transparent, var(--bg));
       z-index: -1;
       pointer-events: none;
@@ -174,7 +135,7 @@
 
     .hero-inner {
       width: min(1100px, 94%);
-      padding: 40px 0 80px;
+      padding: 56px 0 80px;
       text-align: center;
     }
 
@@ -183,19 +144,14 @@
       font-size: clamp(2.8rem, 7vw, 5rem);
       line-height: 0.96;
       letter-spacing: -0.05em;
-      text-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+      text-shadow: 0 8px 24px rgba(0, 0, 0, 0.30);
     }
 
     .subtitle {
       margin: 0 0 28px;
-      color: #d1d8e5;
+      color: #d7deea;
       font-size: 1.02rem;
-      text-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-    }
-
-    body.light .subtitle {
-      color: #516074;
-      text-shadow: none;
+      text-shadow: 0 4px 14px rgba(0, 0, 0, 0.24);
     }
 
     .card {
@@ -208,10 +164,6 @@
       text-align: left;
       backdrop-filter: blur(16px);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
-    }
-
-    body.light .card {
-      box-shadow: 0 14px 40px rgba(24, 40, 80, 0.10);
     }
 
     .card h2 {
@@ -305,33 +257,18 @@
       font-size: 0.9rem;
     }
 
-    @keyframes heroZoom {
+    @keyframes heroFloat {
       from {
-        transform: scale(1.03);
+        background-position: center top;
       }
       to {
-        transform: scale(1.08);
-      }
-    }
-
-    @keyframes heroPan {
-      from {
-        background-position: 48% 50%;
-      }
-      to {
-        background-position: 52% 50%;
+        background-position: center 18px;
       }
     }
 
     @media (max-width: 760px) {
       .nav {
-        grid-template-columns: 1fr;
-        gap: 12px;
         padding: 14px 0;
-      }
-
-      .toggle {
-        justify-self: center;
       }
 
       .nav-links {
@@ -340,7 +277,7 @@
       }
 
       .hero {
-        min-height: calc(100vh - 108px);
+        min-height: calc(100vh - 72px);
       }
 
       .hero-inner {
@@ -350,19 +287,22 @@
       .button-row {
         justify-content: flex-start;
       }
+
+      .hero-bg {
+        background-size: cover;
+        background-position: center;
+      }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="container nav">
-      <div></div>
       <nav class="nav-links">
         <a href="#" onclick="showSection('home'); return false;">Home</a>
         <a href="#" onclick="showSection('research'); return false;">Research</a>
         <a href="#" onclick="showSection('publications'); return false;">Publications</a>
       </nav>
-      <button class="toggle" id="themeToggle">☀️ Light</button>
     </div>
   </header>
 
@@ -416,9 +356,9 @@
 
           <div class="item">
             <div class="item-title">High-Altitude Nuclear Explosions and Space Systems</div>
-            <div class="item-meta">UW–Madison</div>
+            <div class="item-meta">EVIDENT Lab, University of Wisconsin–Madison</div>
             <div>
-              Modeling radiation, EMP, satellite disruption, and related nuclear war effects on space systems.
+              Modeling the effects of high-altitude nuclear explosions on space systems, including gamma-ray attenuation, satellite disruption, electromagnetic pulse generation, and charged particle trapping in the Van Allen belts. This work contributes to broader efforts to develop realistic nuclear war-effects simulation tools.
             </div>
           </div>
 
@@ -426,15 +366,15 @@
             <div class="item-title">Lawrence Livermore National Laboratory</div>
             <div class="item-meta">Defense Science and Technology Internship | Summers 2025 and 2026</div>
             <div>
-              Radiation transport modeling of wartime nuclear effects, including dose validation related to Hiroshima and Nagasaki.
+              Modeled far-field radiation transport from the atomic bombings of Hiroshima and Nagasaki to validate historical dose data. This work supported strategic deterrence and survivability analysis.
             </div>
           </div>
 
           <div class="item">
             <div class="item-title">Oak Ridge National Laboratory</div>
-            <div class="item-meta">SULI 2024</div>
+            <div class="item-meta">Summer Undergraduate Laboratory Internship | 2024</div>
             <div>
-              MCNP shielding and criticality calculations for HALEU transportation canisters, including perturbations to the 30B-10 design.
+              Used MCNP to perform shielding and criticality calculations for HALEU transportation canisters. Investigated source definitions and perturbations to the 30B-10 canister.
             </div>
           </div>
         </div>
@@ -445,28 +385,29 @@
       <div class="page-wrap">
         <div class="card">
           <h2>Publications</h2>
+          <h2><i>Conference Papers</i></h2>
 
           <div class="item">
             <div class="item-title">Perturbations to the 30B-10 Cylinder Criticality Control System</div>
-            <div class="item-meta"><strong>Petersen, Z.</strong>, Gaylard, A., Lang, A., Celik, C., Metwally, W. • ANS 2024</div>
+            <div class="item-meta"><strong>Petersen, Z.</strong>, Gaylard, A., Lang, A. [ORNL], Celik, C. [ORNL], Metwally, W. [ORNL] • ANS 2024</div>
             <div>
               <a href="rod-optimization-ans-abstract.pdf" target="_blank">[PDF]</a>
               <a href="#" onclick="toggleAbstract('abs1'); return false;">[Abstract]</a>
             </div>
             <div id="abs1" class="abstract">
-              This study investigates modifications to the 30B-10 cylinder criticality control system to optimize HALEU fuel transport using MCNP simulations and reactivity analysis.
+              This study investigates modifications to the 30B-10 cylinder criticality control system (CCS) to optimize HALEU fuel transport. Using MCNP simulations, the impact of control rod geometry and radius on keff and uranium mass capacity is analyzed. Results demonstrate that strategic removal and resizing of rods can increase U-235 capacity while maintaining safety constraints.
             </div>
           </div>
 
           <div class="item">
             <div class="item-title">Improving Transport Efficiency of HALEU Fuel with a Modified Criticality Control System in the 30B-10</div>
-            <div class="item-meta"><strong>Petersen, Z.</strong>, Gaylard, A., Lang, A., Celik, C., Metwally, W. • ANS 2024</div>
+            <div class="item-meta"><strong>Petersen, Z.</strong>, Gaylard, A., Lang, A. [ORNL], Celik, C. [ORNL], Metwally, W. [ORNL] • ANS 2024</div>
             <div>
               <a href="rod-worth-ans-abstract.pdf" target="_blank">[PDF]</a>
               <a href="#" onclick="toggleAbstract('abs2'); return false;">[Abstract]</a>
             </div>
             <div id="abs2" class="abstract">
-              This work evaluates how changes to criticality control rods affect reactivity and HALEU transport capacity, combining simplified analytical models with Monte Carlo design exploration.
+              This work evaluates how removing criticality control rods in the 30B-10 canister affects keff and increases HALEU transport capacity. A simplified analytical model is developed to approximate reactivity changes and uranium mass gain, enabling efficient design exploration prior to detailed Monte Carlo simulations.
             </div>
           </div>
         </div>
@@ -489,22 +430,6 @@
       const el = document.getElementById(id);
       el.style.display = el.style.display === 'block' ? 'none' : 'block';
     }
-
-    const toggle = document.getElementById('themeToggle');
-    const body = document.body;
-    const savedTheme = localStorage.getItem('theme');
-
-    if (savedTheme === 'light') {
-      body.classList.add('light');
-      toggle.textContent = '🌙 Dark';
-    }
-
-    toggle.onclick = () => {
-      body.classList.toggle('light');
-      const isLight = body.classList.contains('light');
-      localStorage.setItem('theme', isLight ? 'light' : 'dark');
-      toggle.textContent = isLight ? '🌙 Dark' : '☀️ Light';
-    };
   </script>
 </body>
 </html>
