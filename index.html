@@ -104,7 +104,7 @@
       background-image:
         linear-gradient(to bottom, rgba(8, 10, 18, 0.10), rgba(8, 10, 18, 0.28)),
         url("hero-bg.png");
-      background-size: contain;
+      background-size: cover;
       background-position: center top;
       background-repeat: no-repeat;
       z-index: -3;
@@ -219,7 +219,17 @@
     .page-wrap {
       padding: 42px 0 50px;
     }
-
+    .research-bg {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(8,10,18,0.75), rgba(8,10,18,0.9)),
+        url("research-bg.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: -10;
+    }
     .item {
       border-top: 1px solid var(--border);
       padding: 14px 0;
@@ -349,6 +359,8 @@
     </section>
 
     <section id="research" class="section">
+      <div class="researcg-bg"></div>
+        
       <div class="page-wrap">
         <div class="card">
           <h2>Research</h2>
