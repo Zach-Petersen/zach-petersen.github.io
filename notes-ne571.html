@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NE 571 Notes | Zach Petersen</title>
+  <script>window.MathJax = { tex: { displayMath: [['$$','$$']], inlineMath: [['$','$']] }, svg: { fontCache: 'global' } };</script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+:root {
+  --bg: #090d14;
+  --bg-soft: #101722;
+  --panel: rgba(18, 24, 38, 0.72);
+  --panel-strong: rgba(255, 255, 255, 0.085);
+  --text: #eef3f8;
+  --muted: #aab7c4;
+  --line: rgba(255, 255, 255, 0.13);
+  --accent: #74d2ff;
+  --accent-2: #9ee6bd;
+  --gold: #f2c879;
+  --maxw: 1120px;
+  --radius: 24px;
+  --shadow: 0 18px 55px rgba(0, 0, 0, 0.35);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html, body { margin: 0; padding: 0; }
+body {
+  min-height: 100vh;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 5% 0%, rgba(116, 210, 255, 0.15), transparent 34rem),
+    radial-gradient(circle at 88% 8%, rgba(158, 230, 189, 0.10), transparent 29rem),
+    linear-gradient(135deg, #070a0f 0%, #101722 54%, #080b10 100%);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+a.text-link { color: var(--accent); }
+a.text-link:hover { text-decoration: underline; }
+.container { width: min(var(--maxw), calc(100% - 36px)); margin: 0 auto; }
+header {
+  position: sticky; top: 0; z-index: 50;
+  border-bottom: 1px solid var(--line);
+  background: rgba(7, 10, 15, 0.70);
+  backdrop-filter: blur(18px);
+}
+.nav {
+  min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 18px;
+}
+.brand { font-weight: 780; letter-spacing: 0.02em; }
+.nav-links {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 12px; color: var(--muted); font-size: 0.94rem; font-weight: 650;
+}
+.nav-links a { padding: 8px 11px; border-radius: 999px; transition: 180ms ease; }
+.nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--panel-strong); }
+.page-wrap { padding: 48px 0 70px; }
+.eyebrow {
+  margin: 0 0 11px; color: var(--accent-2); font-size: 0.80rem;
+  text-transform: uppercase; letter-spacing: 0.16em; font-weight: 780;
+}
+.section-heading { margin-bottom: 20px; }
+.section-heading h1, .section-heading h2 {
+  margin: 0; font-size: clamp(2.2rem, 4.4vw, 3.8rem);
+  line-height: 0.98; letter-spacing: -0.055em;
+}
+.section-heading p { max-width: 760px; color: var(--muted); }
+.page-card, .mini-card, .course-card, .formula-card, .note-card, .timeline-card {
+  background: linear-gradient(180deg, rgba(18, 24, 38, 0.78), rgba(24, 32, 50, 0.66));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+.page-card, .mini-card, .formula-card, .note-card, .timeline-card { padding: 26px; }
+.page-card { margin-bottom: 22px; }
+.button-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.button {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 10px 14px; border-radius: 999px; border: 1px solid var(--line);
+  background: rgba(255,255,255,0.055); color: var(--text); font-weight: 700;
+  cursor: pointer; transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.button:hover { transform: translateY(-1px); background: var(--panel-strong); box-shadow: 0 10px 24px rgba(116, 210, 255, 0.10); text-decoration: none; }
+.button.primary { background: rgba(116, 210, 255, 0.16); border-color: rgba(116, 210, 255, 0.35); color: var(--text); }
+.item { border-top: 1px solid var(--line); padding: 18px 0; }
+.item:first-of-type { border-top: none; padding-top: 0; }
+.item-title { font-weight: 780; margin-bottom: 4px; font-size: 1.04rem; color: var(--text); }
+.item-meta { color: var(--muted); font-size: 0.95rem; margin-bottom: 8px; }
+.abstract {
+  display: none; margin-top: 10px; color: var(--muted); font-size: 0.94rem;
+  padding: 14px; border-radius: 16px; border: 1px solid var(--line); background: rgba(0,0,0,0.18);
+}
+.pill-list { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 14px; }
+.pill {
+  border: 1px solid var(--line); background: rgba(255,255,255,0.045);
+  color: var(--muted); border-radius: 999px; padding: 7px 10px; font-size: 0.84rem;
+}
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.formula-card, .note-card { position: relative; overflow: hidden; }
+.formula-card::before, .note-card::before {
+  content: ""; position: absolute; inset: 0 auto 0 0; width: 5px;
+  background: linear-gradient(var(--accent), var(--accent-2)); opacity: 0.85;
+}
+.formula-card h3, .note-card h3, .timeline-card h3 { margin: 0 0 12px; font-size: 1.08rem; letter-spacing: -0.02em; }
+.formula-card p, .note-card p, .timeline-card p { color: var(--muted); margin: 0; }
+.equation {
+  margin: 12px 0; padding: 14px 16px; border-radius: 14px;
+  background: rgba(0, 0, 0, 0.23); border: 1px solid rgba(255,255,255,0.09);
+  overflow-x: auto; color: #f7fbff; font-size: 1.02rem;
+}
+.tag {
+  display: inline-block; margin-bottom: 10px; color: var(--gold); font-size: 0.78rem;
+  text-transform: uppercase; letter-spacing: 0.12em; font-weight: 760;
+}
+.workflow { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 14px; }
+.step {
+  padding: 10px 12px; border-radius: 14px; background: rgba(255,255,255,0.06);
+  border: 1px solid var(--line); color: var(--text); font-size: 0.92rem;
+}
+.arrow { color: var(--muted); }
+.callout {
+  margin-top: 20px; padding: 18px; border-radius: 18px;
+  border: 1px solid rgba(242, 200, 121, 0.28);
+  background: rgba(242, 200, 121, 0.08); color: #f7e6c3;
+}
+footer { text-align: center; color: var(--muted); padding: 24px 0 36px; font-size: 0.9rem; }
+@media (max-width: 850px) {
+  .nav { align-items: flex-start; flex-direction: column; padding: 16px 0; }
+  .grid, .grid.two { grid-template-columns: 1fr; }
+}
+
+    main { padding: 58px 0 86px; }
+    .hero { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 26px; align-items: stretch; margin-bottom: 28px; }
+    .hero-card { padding: 36px; background: linear-gradient(180deg, rgba(18, 24, 38, 0.78), rgba(24, 32, 50, 0.66)); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); backdrop-filter: blur(18px); }
+    h1 { margin: 0; font-size: clamp(2.2rem, 5vw, 4.35rem); line-height: 0.98; letter-spacing: -0.06em; }
+    .subtitle { margin: 20px 0 0; max-width: 760px; color: var(--muted); font-size: 1.08rem; }
+    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } .hero-card { padding: 28px; } }
+  </style>
+</head>
+<body>
+  <header><div class="container nav"><a class="brand" href="index.html#home">Zach Petersen</a><nav class="nav-links"><a href="index.html#home">Home</a><a href="index.html#research">Research</a><a href="index.html#publications">Publications</a><a href="notes.html" class="active">Notes</a></nav></div></header>
+  <main class="container">
+    <section class="hero">
+      <div class="hero-card"><p class="eyebrow">Academic Notes</p><h1>NE 571: Economic and Environmental Aspects of Nuclear Energy</h1><p class="subtitle">A readable reference for nuclear energy economics, fuel-cycle analysis, enrichment calculations, depreciation, taxation, and levelized cost of electricity.</p></div>
+      <aside class="mini-card"><p class="eyebrow">Core Topics</p><div class="pill-list"><span class="pill">Engineering Economy</span><span class="pill">DCF / NPV</span><span class="pill">Depreciation</span><span class="pill">Fuel Cycle</span><span class="pill">Uranium Enrichment</span><span class="pill">LCOE</span></div><div class="button-row"><a class="button primary" href="NE_571_Midterm1_cheat_sheet.pdf">View original PDF</a><a class="button" href="notes.html">Back to Notes</a></div></aside>
+    </section>
+    <section><div class="section-heading"><p class="eyebrow">Financial Mathematics</p><h2>Time Value of Money</h2><p>Relationships used to compare costs and benefits occurring at different times.</p></div><div class="grid">
+      <article class="formula-card"><span class="tag">Single Payment</span><h3>Future and Present Value</h3><div class="equation">$$F = P(1+i)^n$$</div><div class="equation">$$P = F(1+i)^{-n}$$</div><p>P is present value, F is future value, i is interest rate per period, and n is number of periods.</p></article>
+      <article class="formula-card"><span class="tag">Uniform Series</span><h3>Annualized Payments</h3><div class="equation">$$F = A\left[\frac{(1+i)^n - 1}{i}\right]$$</div><div class="equation">$$P = A\left[\frac{(1+i)^n - 1}{i(1+i)^n}\right]$$</div></article>
+      <article class="formula-card"><span class="tag">Compounding</span><h3>Effective Interest Rate</h3><div class="equation">$$i_{eff} = \left(1 + \frac{i}{m}\right)^m - 1$$</div><p>Use this when the quoted annual rate is compounded more frequently than once per year.</p></article>
+    </div></section>
+    <section><div class="section-heading"><p class="eyebrow">Decision Metrics</p><h2>NPV, IRR, and AEC</h2></div><div class="grid two">
+      <article class="note-card"><h3>Net Present Value and Rate of Return</h3><p>NPV converts future cash flows into present dollars. A positive NPV generally indicates the project earns more than the required return.</p><div class="equation">$$NPV = \sum_{t=0}^n \frac{C_t}{(1+i)^t}$$</div><div class="equation">$$IRR:\quad NPV=0$$</div></article>
+      <article class="note-card"><h3>Annual Equivalent Cost</h3><p>AEC rewrites present costs as a uniform annual cost, making alternatives with different lifetimes easier to compare.</p><div class="equation">$$AEC = P\left[\frac{i(1+i)^n}{(1+i)^n-1}\right]$$</div></article>
+    </div></section>
+    <section><div class="section-heading"><p class="eyebrow">Nuclear Economics</p><h2>LCOE and Fuel Cycle</h2></div><div class="grid two">
+      <article class="formula-card"><h3>Levelized Cost of Electricity</h3><div class="equation">$$LCOE = \frac{\sum_t \frac{I_t + M_t + F_t + D_t}{(1+r)^t}}{\sum_t \frac{E_t}{(1+r)^t}}$$</div><p>Capital, O&M, fuel, waste/decommissioning, and electricity generation are discounted over the plant lifetime.</p></article>
+      <article class="timeline-card"><h3>Fuel-Cycle Flow</h3><div class="workflow"><span class="step">Mine</span><span class="arrow">→</span><span class="step">Mill</span><span class="arrow">→</span><span class="step">Conversion</span><span class="arrow">→</span><span class="step">Enrichment</span><span class="arrow">→</span><span class="step">Fabrication</span><span class="arrow">→</span><span class="step">Reactor</span><span class="arrow">→</span><span class="step">Spent Fuel</span></div></article>
+    </div></section>
+    <section><div class="section-heading"><p class="eyebrow">Enrichment</p><h2>Separative Work</h2></div><div class="grid">
+      <article class="formula-card"><span class="tag">Mass Balance</span><h3>Feed, Product, and Tails</h3><div class="equation">$$F=P+W$$</div><div class="equation">$$Fx_F=Px_P+Wx_W$$</div><div class="equation">$$\frac{F}{P}=\frac{x_P-x_W}{x_F-x_W}$$</div></article>
+      <article class="formula-card"><span class="tag">Value Function</span><h3>Separation Potential</h3><div class="equation">$$V(x)=(1-2x)\ln\left(\frac{1-x}{x}\right)$$</div></article>
+      <article class="formula-card"><span class="tag">SWU</span><h3>Separative Work</h3><div class="equation">$$S=PV(x_P)+WV(x_W)-FV(x_F)$$</div><p>SWU increases as product enrichment rises or tails assay decreases.</p></article>
+    </div></section>
+  </main><footer>© 2026 Zachary Petersen</footer>
+</body>
+</html>

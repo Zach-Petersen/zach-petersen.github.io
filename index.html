@@ -4,313 +4,228 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Zachary Petersen</title>
-
   <style>
-    :root {
-      --bg: #0b0f18;
-      --card: rgba(18, 24, 38, 0.78);
-      --card-2: rgba(24, 32, 50, 0.72);
-      --text: #e8edf5;
-      --muted: #a5afbf;
-      --accent: #6ea8fe;
-      --border: rgba(100, 120, 160, 0.22);
-      --maxw: 980px;
-    }
 
-    * {
-      box-sizing: border-box;
-    }
+:root {
+  --bg: #090d14;
+  --bg-soft: #101722;
+  --panel: rgba(18, 24, 38, 0.72);
+  --panel-strong: rgba(255, 255, 255, 0.085);
+  --text: #eef3f8;
+  --muted: #aab7c4;
+  --line: rgba(255, 255, 255, 0.13);
+  --accent: #74d2ff;
+  --accent-2: #9ee6bd;
+  --gold: #f2c879;
+  --maxw: 1120px;
+  --radius: 24px;
+  --shadow: 0 18px 55px rgba(0, 0, 0, 0.35);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html, body { margin: 0; padding: 0; }
+body {
+  min-height: 100vh;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 5% 0%, rgba(116, 210, 255, 0.15), transparent 34rem),
+    radial-gradient(circle at 88% 8%, rgba(158, 230, 189, 0.10), transparent 29rem),
+    linear-gradient(135deg, #070a0f 0%, #101722 54%, #080b10 100%);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+a.text-link { color: var(--accent); }
+a.text-link:hover { text-decoration: underline; }
+.container { width: min(var(--maxw), calc(100% - 36px)); margin: 0 auto; }
+header {
+  position: sticky; top: 0; z-index: 50;
+  border-bottom: 1px solid var(--line);
+  background: rgba(7, 10, 15, 0.70);
+  backdrop-filter: blur(18px);
+}
+.nav {
+  min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 18px;
+}
+.brand { font-weight: 780; letter-spacing: 0.02em; }
+.nav-links {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 12px; color: var(--muted); font-size: 0.94rem; font-weight: 650;
+}
+.nav-links a { padding: 8px 11px; border-radius: 999px; transition: 180ms ease; }
+.nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--panel-strong); }
+.page-wrap { padding: 48px 0 70px; }
+.eyebrow {
+  margin: 0 0 11px; color: var(--accent-2); font-size: 0.80rem;
+  text-transform: uppercase; letter-spacing: 0.16em; font-weight: 780;
+}
+.section-heading { margin-bottom: 20px; }
+.section-heading h1, .section-heading h2 {
+  margin: 0; font-size: clamp(2.2rem, 4.4vw, 3.8rem);
+  line-height: 0.98; letter-spacing: -0.055em;
+}
+.section-heading p { max-width: 760px; color: var(--muted); }
+.page-card, .mini-card, .course-card, .formula-card, .note-card, .timeline-card {
+  background: linear-gradient(180deg, rgba(18, 24, 38, 0.78), rgba(24, 32, 50, 0.66));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+.page-card, .mini-card, .formula-card, .note-card, .timeline-card { padding: 26px; }
+.page-card { margin-bottom: 22px; }
+.button-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.button {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 10px 14px; border-radius: 999px; border: 1px solid var(--line);
+  background: rgba(255,255,255,0.055); color: var(--text); font-weight: 700;
+  cursor: pointer; transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.button:hover { transform: translateY(-1px); background: var(--panel-strong); box-shadow: 0 10px 24px rgba(116, 210, 255, 0.10); text-decoration: none; }
+.button.primary { background: rgba(116, 210, 255, 0.16); border-color: rgba(116, 210, 255, 0.35); color: var(--text); }
+.item { border-top: 1px solid var(--line); padding: 18px 0; }
+.item:first-of-type { border-top: none; padding-top: 0; }
+.item-title { font-weight: 780; margin-bottom: 4px; font-size: 1.04rem; color: var(--text); }
+.item-meta { color: var(--muted); font-size: 0.95rem; margin-bottom: 8px; }
+.abstract {
+  display: none; margin-top: 10px; color: var(--muted); font-size: 0.94rem;
+  padding: 14px; border-radius: 16px; border: 1px solid var(--line); background: rgba(0,0,0,0.18);
+}
+.pill-list { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 14px; }
+.pill {
+  border: 1px solid var(--line); background: rgba(255,255,255,0.045);
+  color: var(--muted); border-radius: 999px; padding: 7px 10px; font-size: 0.84rem;
+}
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.formula-card, .note-card { position: relative; overflow: hidden; }
+.formula-card::before, .note-card::before {
+  content: ""; position: absolute; inset: 0 auto 0 0; width: 5px;
+  background: linear-gradient(var(--accent), var(--accent-2)); opacity: 0.85;
+}
+.formula-card h3, .note-card h3, .timeline-card h3 { margin: 0 0 12px; font-size: 1.08rem; letter-spacing: -0.02em; }
+.formula-card p, .note-card p, .timeline-card p { color: var(--muted); margin: 0; }
+.equation {
+  margin: 12px 0; padding: 14px 16px; border-radius: 14px;
+  background: rgba(0, 0, 0, 0.23); border: 1px solid rgba(255,255,255,0.09);
+  overflow-x: auto; color: #f7fbff; font-size: 1.02rem;
+}
+.tag {
+  display: inline-block; margin-bottom: 10px; color: var(--gold); font-size: 0.78rem;
+  text-transform: uppercase; letter-spacing: 0.12em; font-weight: 760;
+}
+.workflow { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 14px; }
+.step {
+  padding: 10px 12px; border-radius: 14px; background: rgba(255,255,255,0.06);
+  border: 1px solid var(--line); color: var(--text); font-size: 0.92rem;
+}
+.arrow { color: var(--muted); }
+.callout {
+  margin-top: 20px; padding: 18px; border-radius: 18px;
+  border: 1px solid rgba(242, 200, 121, 0.28);
+  background: rgba(242, 200, 121, 0.08); color: #f7e6c3;
+}
+footer { text-align: center; color: var(--muted); padding: 24px 0 36px; font-size: 0.9rem; }
+@media (max-width: 850px) {
+  .nav { align-items: flex-start; flex-direction: column; padding: 16px 0; }
+  .grid, .grid.two { grid-template-columns: 1fr; }
+}
 
-    html, body {
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .container {
-      width: min(var(--maxw), 92%);
-      margin: 0 auto;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      border-bottom: 1px solid var(--border);
-      background: rgba(10, 14, 22, 0.72);
-      backdrop-filter: blur(14px);
-    }
-
-    .nav {
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 30px;
-      justify-content: center;
-      font-weight: 600;
-      font-size: 0.95rem;
-      letter-spacing: 0.01em;
-    }
-
-    .section {
-      display: none;
-    }
-
-    .section.active {
-      display: block;
-    }
-
+    .section { display: none; }
+    .section.active { display: block; }
     .hero {
-      min-height: calc(100vh - 72px);
-      width: 100vw;
-      margin-left: calc(50% - 50vw);
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      isolation: isolate;
-      background: var(--bg);
+      min-height: calc(100vh - 74px);
+      width: 100vw; margin-left: calc(50% - 50vw); position: relative;
+      display: flex; align-items: center; justify-content: center; overflow: hidden; isolation: isolate;
     }
-
     .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(to bottom, rgba(8, 10, 18, 0.10), rgba(8, 10, 18, 0.28)),
-        url("hero-bg.png");
-      background-size: cover;
-      background-position: center top;
-      background-repeat: no-repeat;
-      z-index: -3;
-      opacity: 0.95;
+      position: absolute; inset: 0;
+      background-image: linear-gradient(to bottom, rgba(7, 10, 15, 0.14), rgba(7, 10, 15, 0.34)), url("hero-bg.png");
+      background-size: cover; background-position: center top; background-repeat: no-repeat; z-index: -3; opacity: 0.96;
     }
-
     .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(to bottom, rgba(6, 10, 18, 0.12), rgba(6, 10, 18, 0.38) 68%, var(--bg) 100%);
-      z-index: -2;
-      pointer-events: none;
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 35%, rgba(116, 210, 255, 0.08), transparent 30rem),
+        linear-gradient(to bottom, rgba(6, 10, 18, 0.08), rgba(6, 10, 18, 0.42) 72%, var(--bg) 100%);
+      z-index: -2; pointer-events: none;
     }
-
     .hero::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 180px;
-      background: linear-gradient(to bottom, transparent, var(--bg));
-      z-index: -1;
-      pointer-events: none;
+      content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 190px;
+      background: linear-gradient(to bottom, transparent, var(--bg)); z-index: -1; pointer-events: none;
     }
-
-    .hero-inner {
-      width: min(1100px, 94%);
-      padding: 56px 0 80px;
-      text-align: center;
-    }
-
+    .hero-inner { width: min(1120px, 94%); padding: 62px 0 86px; text-align: left; }
+    .home-grid { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 22px; align-items: center; }
+    .home-intro { padding: 28px 0; }
     h1 {
-      margin: 0 0 12px;
-      font-size: clamp(2.8rem, 7vw, 5rem);
-      line-height: 0.96;
-      letter-spacing: -0.05em;
-      text-shadow: 0 8px 24px rgba(0, 0, 0, 0.30);
+      margin: 0 0 14px; font-size: clamp(3rem, 7vw, 5.4rem);
+      line-height: 0.94; letter-spacing: -0.065em; text-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
     }
-
     .subtitle {
-      margin: 0 0 28px;
-      color: #d7deea;
-      font-size: 1.02rem;
-      text-shadow: 0 4px 14px rgba(0, 0, 0, 0.24);
+      margin: 0 0 20px; max-width: 790px; color: #d7deea;
+      font-size: 1.05rem; text-shadow: 0 4px 14px rgba(0, 0, 0, 0.24);
     }
-
-    .card {
-      width: min(760px, 100%);
-      margin: 0 auto;
-      background: linear-gradient(180deg, var(--card), var(--card-2));
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 24px;
-      text-align: left;
-      backdrop-filter: blur(16px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+    .hero-card {
+      width: 100%; margin: 0; padding: 26px; text-align: left; position: relative; overflow: hidden;
+      background: linear-gradient(180deg, rgba(18, 24, 38, 0.78), rgba(24, 32, 50, 0.66));
+      border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); backdrop-filter: blur(18px);
     }
-
-    .card h2 {
-      margin: 0 0 14px;
-      font-size: 1.16rem;
-      letter-spacing: -0.02em;
+    .hero-card::before {
+      content: ""; position: absolute; inset: 0 auto 0 0; width: 5px;
+      background: linear-gradient(var(--accent), var(--accent-2)); opacity: 0.85;
     }
-
-    .card p {
-      margin: 0 0 12px;
-      color: var(--muted);
+    .hero-card h2 { margin: 0 0 14px; font-size: 1.16rem; letter-spacing: -0.02em; }
+    .hero-card p { color: var(--muted); margin: 0 0 12px; }
+    .contact-list { display: grid; gap: 8px; margin-top: 16px; color: var(--muted); font-size: 0.96rem; }
+    .home-highlights { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 22px; }
+    .highlight-card {
+      padding: 20px; min-height: 165px; color: inherit; font: inherit; text-align: left; cursor: pointer;
+      background: linear-gradient(180deg, rgba(18, 24, 38, 0.72), rgba(24, 32, 50, 0.58));
+      border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow); backdrop-filter: blur(18px);
+      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
     }
-
-    .contact-list {
-      display: grid;
-      gap: 8px;
-      margin-top: 16px;
-      color: var(--muted);
-      font-size: 0.96rem;
-    }
-
-    .button-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: var(--card);
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .button:hover {
-      text-decoration: none;
-      transform: translateY(-1px);
-      box-shadow: 0 10px 24px rgba(110, 168, 254, 0.10);
-    }
-
-    .button.primary {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: white;
-    }
-
-    .page-wrap {
-      padding: 42px 0 50px;
-    }
+    .highlight-card:hover { transform: translateY(-3px); background: var(--panel-strong); border-color: rgba(116, 210, 255, 0.30); }
+    .highlight-card h3 { margin: 0 0 8px; font-size: 1.04rem; letter-spacing: -0.02em; }
+    .highlight-card p { margin: 0; color: var(--muted); font-size: 0.94rem; }
     .research-bg {
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(8,10,18,0.75), rgba(8,10,18,0.9)),
-        url("research-bg.png");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      z-index: -10;
+      position: fixed; inset: 0;
+      background-image: linear-gradient(rgba(8, 10, 18, 0.74), rgba(8, 10, 18, 0.92)), url("research-bg.png");
+      background-size: cover; background-position: center; background-repeat: no-repeat; z-index: -10;
     }
-    .item {
-      border-top: 1px solid var(--border);
-      padding: 14px 0;
+    .notes-hero { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 22px; align-items: stretch; margin-bottom: 22px; }
+    .notes-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .course-card { position: relative; overflow: hidden; min-height: 260px; padding: 26px; transition: transform 180ms ease, background 180ms ease, border-color 180ms ease; }
+    .course-card::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 5px; background: linear-gradient(var(--accent), var(--accent-2)); opacity: 0.85; }
+    .course-card:hover { transform: translateY(-4px); background: var(--panel-strong); border-color: rgba(116, 210, 255, 0.30); }
+    .course-number {
+      display: inline-block; margin-bottom: 18px; padding: 7px 10px; border: 1px solid rgba(242, 200, 121, 0.28);
+      border-radius: 999px; color: var(--gold); background: rgba(242, 200, 121, 0.08); font-size: 0.78rem;
+      text-transform: uppercase; letter-spacing: 0.12em; font-weight: 760;
     }
-
-    .item:first-of-type {
-      border-top: none;
-      padding-top: 0;
+    .course-card h3 { margin: 0; font-size: clamp(1.35rem, 3vw, 2rem); line-height: 1.08; letter-spacing: -0.04em; }
+    .course-card p { margin: 14px 0 22px; color: var(--muted); }
+    .open-note {
+      display: inline-flex; margin-top: 24px; align-items: center; justify-content: center;
+      border-radius: 999px; padding: 11px 15px; background: rgba(116, 210, 255, 0.13);
+      border: 1px solid rgba(116, 210, 255, 0.28); color: var(--text); font-weight: 740;
     }
-
-    .item-title {
-      font-weight: 700;
-      margin-bottom: 4px;
-      font-size: 1rem;
-    }
-
-    .item-meta {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: 8px;
-    }
-
-    .abstract {
-      display: none;
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 0.93rem;
-    }
-
-    footer {
-      text-align: center;
-      color: var(--muted);
-      padding: 24px 0 36px;
-      font-size: 0.9rem;
-    }
-
-    @keyframes heroFloat {
-      from {
-        background-position: center top;
-      }
-      to {
-        background-position: center 18px;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .nav {
-        padding: 14px 0;
-      }
-
-      .nav-links {
-        gap: 16px;
-        flex-wrap: wrap;
-      }
-
-      .hero {
-        min-height: calc(100vh - 72px);
-      }
-
-      .hero-inner {
-        padding-top: 24px;
-      }
-
-      .button-row {
-        justify-content: flex-start;
-      }
-
-      .hero-bg {
-        background-size: cover;
-        background-position: center;
-      }
+    @media (max-width: 850px) {
+      .home-grid, .home-highlights, .notes-hero, .notes-grid { grid-template-columns: 1fr; }
+      .hero-inner { padding-top: 34px; }
+      .hero-bg { background-position: center; }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="container nav">
-      <nav class="nav-links">
-        <a href="#" onclick="showSection('home'); return false;">Home</a>
-        <a href="#" onclick="showSection('research'); return false;">Research</a>
-        <a href="#" onclick="showSection('publications'); return false;">Publications</a>
+      <a class="brand" href="#home" onclick="showSection('home'); return false;">Zach Petersen</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#home" class="active" data-section-link="home" onclick="showSection('home'); return false;">Home</a>
+        <a href="#research" data-section-link="research" onclick="showSection('research'); return false;">Research</a>
+        <a href="#publications" data-section-link="publications" onclick="showSection('publications'); return false;">Publications</a>
+        <a href="#notes" data-section-link="notes" onclick="showSection('notes'); return false;">Notes</a>
       </nav>
     </div>
   </header>
@@ -320,39 +235,51 @@
       <div class="hero">
         <div class="hero-bg"></div>
         <div class="hero-overlay"></div>
-
         <div class="hero-inner">
-          <h1>Zachary Petersen</h1>
-          <p class="subtitle">Nuclear Engineering • Physics • Astrophysics | UW–Madison</p>
-
-          <div class="card">
-            <h2>About</h2>
-
-            <p>
-              I am a Nuclear Engineering student at the University of Wisconsin–Madison with research interests in nuclear security, nonproliferation, and nuclear war effects.
-            </p>
-
-            <p>
-              My work focuses on computational modeling of radiation transport, shielding, and high-altitude nuclear environments using Python and MCNP.
-            </p>
-
-            <p>
-              I have conducted research at Lawrence Livermore National Laboratory and Oak Ridge National Laboratory and plan to pursue a Ph.D. in nuclear security.
-            </p>
-
-            <div class="contact-list">
-              <div><strong>Email:</strong> <a href="mailto:zachary.petersen@wisc.edu">zachary.petersen@wisc.edu</a></div>
-              <div><strong>GitHub:</strong> <a href="https://github.com/Zach-Petersen" target="_blank">github.com/Zach-Petersen</a></div>
-              <div><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/uw-zach" target="_blank">linkedin.com/in/uw-zach</a></div>
-              <div><strong>Tools:</strong> Python, MCNP, SCALE, High-Performance Computing</div>
+          <div class="home-grid">
+            <div class="home-intro">
+              <p class="eyebrow">Portfolio</p>
+              <h1>Zachary Petersen</h1>
+              <p class="subtitle">Nuclear Engineering • Physics • Astrophysics | UW–Madison</p>
+              <p class="subtitle">Computational nuclear security research focused on radiation transport, shielding, and high-altitude nuclear environments.</p>
+              <div class="home-actions">
+                <a class="button primary" href="mailto:zachary.petersen@wisc.edu">Contact Me</a>
+                <a class="button" href="cv.pdf" target="_blank" rel="noopener">CV</a>
+                <button class="button" onclick="showSection('research')">Research</button>
+                <button class="button" onclick="showSection('notes')">Notes</button>
+              </div>
             </div>
 
-            <div class="button-row">
-              <a class="button primary" href="mailto:zachary.petersen@wisc.edu">Contact Me</a>
-              <a class="button" href="cv.pdf" target="_blank">CV</a>
-              <button class="button" onclick="showSection('research')">Research</button>
-              <button class="button" onclick="showSection('publications')">Publications</button>
+            <div class="hero-card">
+              <h2>About</h2>
+              <p>I am a Nuclear Engineering student at the University of Wisconsin–Madison with research interests in nuclear security, nonproliferation, and nuclear war effects.</p>
+              <p>My work focuses on computational modeling of radiation transport, shielding, and high-altitude nuclear environments using Python and MCNP.</p>
+              <p>I have conducted research at Lawrence Livermore National Laboratory and Oak Ridge National Laboratory and plan to pursue a Ph.D. in nuclear security.</p>
+              <div class="contact-list">
+                <div><strong>Email:</strong> <a class="text-link" href="mailto:zachary.petersen@wisc.edu">zachary.petersen@wisc.edu</a></div>
+                <div><strong>GitHub:</strong> <a class="text-link" href="https://github.com/Zach-Petersen" target="_blank" rel="noopener">github.com/Zach-Petersen</a></div>
+                <div><strong>LinkedIn:</strong> <a class="text-link" href="https://www.linkedin.com/in/uw-zach" target="_blank" rel="noopener">linkedin.com/in/uw-zach</a></div>
+                <div><strong>Tools:</strong> Python, MCNP, SCALE, High-Performance Computing</div>
+              </div>
             </div>
+          </div>
+
+          <div class="home-highlights">
+            <button class="highlight-card" onclick="showSection('research')">
+              <p class="eyebrow">Research</p>
+              <h3>Radiation Effects & Nuclear Security</h3>
+              <p>HANE modeling, radiation transport, shielding, criticality, and dose analysis.</p>
+            </button>
+            <button class="highlight-card" onclick="showSection('publications')">
+              <p class="eyebrow">Publications</p>
+              <h3>Conference Papers</h3>
+              <p>ANS conference work on HALEU transport and 30B-10 criticality control systems.</p>
+            </button>
+            <button class="highlight-card" onclick="showSection('notes')">
+              <p class="eyebrow">Notes</p>
+              <h3>Academic Notes Library</h3>
+              <p>Organized class notes for nuclear engineering courses and equation references.</p>
+            </button>
           </div>
         </div>
       </div>
@@ -360,46 +287,30 @@
 
     <section id="research" class="section">
       <div class="research-bg"></div>
-        
       <div class="page-wrap">
-        <div class="card">
-          <h2>Research</h2>
-
+        <div class="section-heading">
+          <p class="eyebrow">Research</p>
+          <h2>Computational Nuclear Security and Radiation Effects</h2>
+          <p>Research experience spanning high-altitude nuclear environments, radiation transport, shielding, criticality, and dose modeling.</p>
+        </div>
+        <div class="page-card">
           <div class="item">
             <div class="item-title">High-Altitude Nuclear Explosions and Space Systems</div>
-            
-            <div class="item-meta">
-              <a href="http://evident.project.wiscweb.wisc.edu/" target="_blank">
-                EVIDENT Lab, University of Wisconsin–Madison
-              </a>
-            </div>
-            
-            <div>
-              Modeling the effects of high-altitude nuclear explosions on space systems, including gamma-ray attenuation, satellite disruption, electromagnetic pulse generation, and charged particle trapping in the Van Allen belts. This work contributes to broader efforts to develop realistic nuclear war-effects simulation tools.
-            </div>
+            <div class="item-meta"><a class="text-link" href="http://evident.project.wiscweb.wisc.edu/" target="_blank" rel="noopener">EVIDENT Lab, University of Wisconsin–Madison</a></div>
+            <div>Modeling the effects of high-altitude nuclear explosions on space systems, including gamma-ray attenuation, satellite disruption, electromagnetic pulse generation, and charged particle trapping in the Van Allen belts. This work contributes to broader efforts to develop realistic nuclear war-effects simulation tools.</div>
           </div>
-
           <div class="item">
             <div class="item-title">Lawrence Livermore National Laboratory</div>
             <div class="item-meta">Defense Science and Technology Internship | Summers 2025 and 2026</div>
-            <div>
-              Modeled far-field radiation transport from the atomic bombings of Hiroshima and Nagasaki to validate historical dose data. This work supported strategic deterrence and survivability analysis.
-            </div>
+            <div>Modeled far-field radiation transport from the atomic bombings of Hiroshima and Nagasaki to validate historical dose data. This work supported strategic deterrence and survivability analysis.</div>
           </div>
-
           <div class="item">
             <div class="item-title">Oak Ridge National Laboratory</div>
             <div class="item-meta">Summer Undergraduate Laboratory Internship | 2024</div>
-            <div>
-              Used MCNP to perform shielding and criticality calculations for HALEU transportation canisters. Investigated source definitions and perturbations to the 30B-10 canister.
-            </div>
-            
+            <div>Used MCNP to perform shielding and criticality calculations for HALEU transportation canisters. Investigated source definitions and perturbations to the 30B-10 canister.</div>
             <div style="margin-top: 10px;">
-              <a href="#" onclick="showSection('publications'); setTimeout(() => {
-                  document.getElementById('ornl-paper').scrollIntoView({ behavior: 'smooth' });
-              }, 100); return false;">
-                 View Related ANS Conference Paper
-               </a>
+              <a class="text-link" href="#publications" onclick="showSection('publications'); setTimeout(() => document.getElementById('ornl-paper').scrollIntoView({ behavior: 'smooth' }), 100); return false;">View Related ANS Conference Paper</a>
+            </div>
           </div>
         </div>
       </div>
@@ -407,53 +318,96 @@
 
     <section id="publications" class="section">
       <div class="page-wrap">
-        <div class="card">
-          <h2>Publications</h2>
-          <h2><i>Conference Papers</i></h2>
-
-          <div class="item">
+        <div class="section-heading">
+          <p class="eyebrow">Publications</p>
+          <h2>Conference Papers</h2>
+          <p>Selected conference papers and abstracts related to nuclear engineering research.</p>
+        </div>
+        <div class="page-card">
+          <div class="item" id="ornl-paper">
             <div class="item-title">Perturbations to the 30B-10 Cylinder Criticality Control System</div>
             <div class="item-meta"><strong>Petersen, Z.</strong>, Gaylard, A., Lang, A. [ORNL], Celik, C. [ORNL], Metwally, W. [ORNL] • ANS 2024</div>
             <div>
-              <a href="rod-optimization-ans-abstract.pdf" target="_blank">[PDF]</a>
-              <a href="#" onclick="toggleAbstract('abs1'); return false;">[Abstract]</a>
+              <a class="text-link" href="rod-optimization-ans-abstract.pdf" target="_blank" rel="noopener">[PDF]</a>
+              <a class="text-link" href="#" onclick="toggleAbstract('abs1'); return false;">[Abstract]</a>
             </div>
-            <div id="abs1" class="abstract">
-              This study investigates modifications to the 30B-10 cylinder criticality control system (CCS) to optimize HALEU fuel transport. Using MCNP simulations, the impact of control rod geometry and radius on keff and uranium mass capacity is analyzed. Results demonstrate that strategic removal and resizing of rods can increase U-235 capacity while maintaining safety constraints.
-            </div>
+            <div id="abs1" class="abstract">This study investigates modifications to the 30B-10 cylinder criticality control system (CCS) to optimize HALEU fuel transport. Using MCNP simulations, the impact of control rod geometry and radius on keff and uranium mass capacity is analyzed. Results demonstrate that strategic removal and resizing of rods can increase U-235 capacity while maintaining safety constraints.</div>
           </div>
-
           <div class="item">
             <div class="item-title">Improving Transport Efficiency of HALEU Fuel with a Modified Criticality Control System in the 30B-10</div>
             <div class="item-meta"><strong>Petersen, Z.</strong>, Gaylard, A., Lang, A. [ORNL], Celik, C. [ORNL], Metwally, W. [ORNL] • ANS 2024</div>
             <div>
-              <a href="rod-worth-ans-abstract.pdf" target="_blank">[PDF]</a>
-              <a href="#" onclick="toggleAbstract('abs2'); return false;">[Abstract]</a>
+              <a class="text-link" href="rod-worth-ans-abstract.pdf" target="_blank" rel="noopener">[PDF]</a>
+              <a class="text-link" href="#" onclick="toggleAbstract('abs2'); return false;">[Abstract]</a>
             </div>
-            <div id="abs2" class="abstract">
-              This work evaluates how removing criticality control rods in the 30B-10 canister affects keff and increases HALEU transport capacity. A simplified analytical model is developed to approximate reactivity changes and uranium mass gain, enabling efficient design exploration prior to detailed Monte Carlo simulations.
+            <div id="abs2" class="abstract">This work evaluates how removing criticality control rods in the 30B-10 canister affects keff and increases HALEU transport capacity. A simplified analytical model is developed to approximate reactivity changes and uranium mass gain, enabling efficient design exploration prior to detailed Monte Carlo simulations.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="notes" class="section">
+      <div class="page-wrap">
+        <div class="notes-hero">
+          <div class="page-card">
+            <p class="eyebrow">Academic Notes</p>
+            <h2 style="font-size: clamp(2.2rem, 4.4vw, 3.8rem); line-height: 0.98; letter-spacing: -0.055em;">Course Notes Library</h2>
+            <p>A central place for organized class notes, equation sheets, and study references. Select a class to open its individualized notes page.</p>
+          </div>
+          <div class="mini-card">
+            <p class="eyebrow">Structure</p>
+            <p>Use this page as the notes hub. Each class gets its own separate page so the layout stays clean and expandable.</p>
+            <div class="pill-list">
+              <span class="pill">notes.html</span>
+              <span class="pill">notes-ne571.html</span>
+              <span class="pill">notes-ne423.html</span>
             </div>
           </div>
+        </div>
+        <div class="notes-grid">
+          <a class="course-card" href="notes-ne571.html">
+            <span class="course-number">NE 571</span>
+            <h3>Economic and Environmental Aspects of Nuclear Energy</h3>
+            <p>Engineering economy, discounted cash flow, NPV, depreciation, LCOE, fuel cycle economics, uranium enrichment, and SWU.</p>
+            <div class="pill-list">
+              <span class="pill">NPV / IRR</span><span class="pill">LCOE</span><span class="pill">Fuel Cycle</span><span class="pill">Enrichment</span>
+            </div>
+            <span class="open-note">Open NE 571 notes</span>
+          </a>
+          <a class="course-card" href="notes-ne423.html">
+            <span class="course-number">NE 423</span>
+            <h3>Nuclear Engineering Materials</h3>
+            <p>Crystal structures, diffusion, heat treatment, radiation damage, void swelling, embrittlement, and materials performance in reactors.</p>
+            <div class="pill-list">
+              <span class="pill">BCC / FCC / HCP</span><span class="pill">Diffusion</span><span class="pill">Radiation Damage</span><span class="pill">Embrittlement</span>
+            </div>
+            <span class="open-note">Open NE 423 notes</span>
+          </a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    © 2026 Zachary Petersen
-  </footer>
+  <footer>© 2026 Zachary Petersen</footer>
 
   <script>
     function showSection(id) {
       document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
       document.getElementById(id).classList.add('active');
+      document.querySelectorAll('[data-section-link]').forEach(link => link.classList.remove('active'));
+      const activeLink = document.querySelector(`[data-section-link="${id}"]`);
+      if (activeLink) activeLink.classList.add('active');
+      history.replaceState(null, '', `#${id}`);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
     function toggleAbstract(id) {
       const el = document.getElementById(id);
       el.style.display = el.style.display === 'block' ? 'none' : 'block';
     }
+    window.addEventListener('DOMContentLoaded', () => {
+      const initial = window.location.hash.replace('#', '') || 'home';
+      if (document.getElementById(initial)) showSection(initial);
+    });
   </script>
 </body>
 </html>
