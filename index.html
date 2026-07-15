@@ -112,9 +112,12 @@ header{
 }
 .hero-inner{width:min(var(--maxw),calc(100% - 44px));margin:0 auto;padding:120px 0 90px}
 .readout{
-  font-family:var(--mono);font-size:.8rem;color:var(--accent);
-  letter-spacing:.04em;margin:0 0 26px;min-height:1.4em;
+  font-family:var(--mono);font-size:.8rem;
+  letter-spacing:.04em;margin:0 0 26px;min-height:4.6em;
+  line-height:1.85;
 }
+.readout .cmd{color:var(--accent)}
+.readout .line{display:block;min-height:1.85em}
 .readout .cursor{display:inline-block;width:.55em;height:1.05em;vertical-align:text-bottom;background:var(--accent);animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
 h1{
@@ -306,7 +309,11 @@ footer .container{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-bet
 <!-- ============================== HERO ============================== -->
 <section class="hero" id="top">
   <div class="hero-inner">
-    <p class="readout"><span id="typeline">&gt; </span><span class="cursor" aria-hidden="true"></span></p>
+    <div class="readout" aria-label="Terminal introduction">
+      <span class="line cmd" id="line1"></span>
+      <span class="line cmd" id="line2"></span>
+      <span class="line" id="line3"><span class="cursor" id="cursor" aria-hidden="true" style="visibility:hidden"></span></span>
+    </div>
     <h1>Zachary<br /><span class="outline">Petersen</span></h1>
     <p class="hero-sub"><strong>Computational nuclear security.</strong> Radiation transport, shielding, and high-altitude nuclear environments — modeled in Python and MCNP at UW–Madison.</p>
 
