@@ -506,7 +506,8 @@ Contact</div>
   // typed readout in hero
   (function(){
     const el = document.getElementById('typeline');
-    const text = '> init radiation_transport --mode=hane --solver=mcnp';
+    const cmd1 = '> init radiation_transport --particles=1e9 --source=14.1MeV';
+    const cmd2 = '> whoami';
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced){ el.textContent = text; return; }
     let i = 2;
