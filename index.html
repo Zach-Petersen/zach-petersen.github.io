@@ -503,24 +503,46 @@ Contact</div>
 </footer>
 
 <script>
-  // typed readout in hero
+// typed terminal sequence in hero — the headline below is the "output" of whoami
   (function(){
-    const el = document.getElementById('typeline');
+    const l1 = document.getElementById('line1');
+    const l2 = document.getElementById('line2');
+    const cursor = document.getElementById('cursor');
     const cmd1 = '> init radiation_transport --particles=1e9 --source=14.1MeV';
     const cmd2 = '> whoami';
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced){ el.textContent = text; return; }
-    let i = 2;
-    el.textContent = '> ';
-    (function tick(){
-      if (i <= text.length){
-        el.textContent = text.slice(0, i);
-        i++;
-        setTimeout(tick, 34 + Math.random() * 40);
-      }
-    })();
+ 
+    if (reduced){
+      l1.textContent = cmd1;
+      l2.textContent = cmd2;
+      cursor.style.visibility = 'visible';
+      return;
+    }
+ 
+    function typeInto(el, text, done){
+      let i = 0;
+      (function tick(){
+        if (i <= text.length){
+          el.textContent = text.slice(0, i);
+          i++;
+          setTimeout(tick, 34 + Math.random() * 40);
+        } else if (done){
+          done();
+        }
+      })();
+    }
+ 
+    typeInto(l1, cmd1, () => {
+      setTimeout(() => {
+        typeInto(l2, cmd2, () => {
+          // cursor drops to the next line and waits — the page answers
+          cursor.style.visibility = 'visible';
+          document.querySelector('h1').classList.add('answered');
+        });
+      }, 420);
+    });
   })();
-
+ 
   // abstract toggles
   function toggleAbstract(id, btn){
     const el = document.getElementById(id);
