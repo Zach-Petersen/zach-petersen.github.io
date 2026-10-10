@@ -229,28 +229,13 @@ h2{
 }
 .abstract.open{display:block}
 
-/* notes — file tree */
-.tree{
-  background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;
-}
-.tree-row{
-  display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;
-  padding:26px 30px;border-top:1px solid var(--line);
-  transition:background .16s ease;
-}
-.tree-row:first-of-type{border-top:none}
-.tree-row:hover{background:rgba(110,163,255,.05)}
-.tree-row .path{font-family:var(--mono);font-size:.8rem;color:var(--accent);white-space:nowrap}
-.tree-row h3{margin:0 0 4px;font-family:var(--display);font-weight:600;font-size:1.12rem}
-.tree-row p{margin:0;color:var(--muted);font-size:.92rem}
-.tree-row .open{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text);white-space:nowrap}
-.tree-row .open::after{content:" →";color:var(--accent);transition:margin .16s ease}
-.tree-row:hover .open::after{margin-left:5px}
-.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
-.tag{
-  font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;
-  padding:4px 10px;border-radius:3px;border:1px solid var(--line);color:var(--muted);
-}
+/* awards */
+.award-list{margin:0;padding:0;list-style:none}
+.award-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px 28px;padding:22px 0;border-top:1px solid var(--line);align-items:baseline}
+.award-row h3{margin:0;font-family:var(--display);font-weight:600;font-size:1.05rem;line-height:1.4}
+.award-row p{margin:5px 0 0;color:var(--muted);font-size:.92rem}
+.award-date{font-family:var(--mono);font-size:.78rem;color:var(--accent);white-space:nowrap}
+@media(max-width:600px){.award-row{grid-template-columns:1fr;gap:8px}}
 
 /* contact */
 .contact{border-bottom:none;text-align:left;position:relative;overflow:hidden}
@@ -282,7 +267,6 @@ footer .container{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-bet
   .about-grid{grid-template-columns:1fr}
   .sec-head{grid-template-columns:1fr;gap:14px}
   .entry{grid-template-columns:56px 1fr;gap:18px}
-  .tree-row{grid-template-columns:1fr;gap:10px}
   section{padding:80px 0}
   .nav{flex-direction:column;align-items:flex-start;padding:12px 0}
 }
@@ -297,7 +281,7 @@ footer .container{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-bet
       <a href="#about" data-link="about">About</a>
       <a href="#research" data-link="research">Research</a>
       <a href="#publications" data-link="publications">Publications</a>
-      <a href="#notes" data-link="notes">Notes</a>
+      <a href="#awards" data-link="awards">Awards</a>
       <a href="#contact" data-link="contact">Contact</a>
     </nav>
   </div>
@@ -380,6 +364,7 @@ Log</div>
           <h3>High-altitude nuclear explosions &amp; space systems</h3>
           <p class="meta"><a class="text-link" href="http://evident.project.wiscweb.wisc.edu/" target="_blank" rel="noopener">EVIDENT Lab</a> · UW–Madison · Current</p>
           <p>Modeling the effects of high-altitude nuclear explosions on space systems — gamma-ray attenuation, satellite disruption, electromagnetic pulse generation, and charged-particle trapping in the Van Allen belts. Contributes to broader efforts to develop realistic nuclear war-effects simulation tools.</p>
+          <a class="text-link more" href="petersen-2026-inmm-nuclear-detonation-leo.pdf" target="_blank" rel="noopener">&gt; view winning conference paper</a>
         </div>
       </article>
 
@@ -408,14 +393,24 @@ Log</div>
   <!-- =========================== PUBLICATIONS ========================== -->
   <section id="publications">
     <div class="sec-head reveal">
-      <div class="stacked">Selected
-Conference
-Papers</div>
+      <div class="stacked">Publications
+&amp;
+Presentations</div>
       <div>
         <h2>Publications</h2>
-        <p class="lede">Conference papers and abstracts from nuclear engineering research.</p>
+        <p class="lede">Conference papers and invited presentations from nuclear engineering research.</p>
       </div>
     </div>
+
+    <h3 style="font-family:var(--display);margin:0 0 24px">Conference Papers</h3>
+    <article class="pub reveal" id="inmm-paper">
+      <span class="venue">INMM 2026 · 2nd Place, Student Competition</span>
+      <h3>Evaluating the Effects of a Nuclear Detonation in Low Earth Orbit</h3>
+      <p class="authors"><strong>Petersen, Z.</strong>, Lockert, T., &amp; Philippe, S. (2026). <em>Proceedings of the 67th INMM Annual Meeting.</em></p>
+      <div class="pub-links">
+        <a class="chip" href="petersen-2026-inmm-nuclear-detonation-leo.pdf" target="_blank" rel="noopener">Paper PDF</a>
+      </div>
+    </article>
 
     <article class="pub reveal" id="ornl-paper">
       <span class="venue">ANS 2024</span>
@@ -438,44 +433,38 @@ Papers</div>
       </div>
       <div id="abs2" class="abstract">This work evaluates how removing criticality control rods in the 30B-10 canister affects k<sub>eff</sub> and increases HALEU transport capacity. A simplified analytical model approximates reactivity changes and uranium mass gain, enabling efficient design exploration prior to detailed Monte Carlo simulations.</div>
     </article>
+
+    <h3 style="font-family:var(--display);margin:40px 0 24px">Presentations</h3>
+    <article class="pub reveal" id="un-presentation">
+      <span class="venue">United Nations · Geneva, Switzerland · September 2026</span>
+      <h3>Effects of Nuclear Explosions in Space</h3>
+      <p class="authors"><strong>Petersen, Z.</strong> (2026, September). Invited presentation and panel discussion at the <em>United Nations Scientific Panel on the Effects of Nuclear War</em>, Geneva, Switzerland.</p>
+      <div class="pub-links">
+        <a class="chip" href="petersen-2026-un-nuclear-explosions-space.pdf" target="_blank" rel="noopener">Presentation PDF</a>
+      </div>
+    </article>
   </section>
 
-  <!-- ============================== NOTES ============================= -->
-  <section id="notes">
+  <!-- ============================== AWARDS ============================= -->
+  <section id="awards">
     <div class="sec-head reveal">
-      <div class="stacked">Course
-Notes
-Library</div>
-      <div>
-        <h2>Notes</h2>
-        <p class="lede">Organized class notes, equation sheets, and study references. Each course opens its own page.</p>
-      </div>
+      <div class="stacked">Awards
+&amp;
+Honors</div>
+      <div><h2>Awards &amp; Honors</h2></div>
     </div>
-
-    <div class="tree reveal">
-      <a class="tree-row" href="notes-ne571.html">
-        <span class="path">~/notes/ne571</span>
-        <div>
-          <h3>Economic &amp; Environmental Aspects of Nuclear Energy</h3>
-          <p>Engineering economy, discounted cash flow, NPV, depreciation, LCOE, fuel cycle economics, uranium enrichment, and SWU.</p>
-          <div class="tags">
-            <span class="tag">NPV / IRR</span><span class="tag">LCOE</span><span class="tag">Fuel cycle</span><span class="tag">Enrichment</span>
-          </div>
-        </div>
-        <span class="open">Open</span>
-      </a>
-      <a class="tree-row" href="notes-ne423.html">
-        <span class="path">~/notes/ne423</span>
-        <div>
-          <h3>Nuclear Engineering Materials</h3>
-          <p>Crystal structures, diffusion, heat treatment, radiation damage, void swelling, embrittlement, and materials performance in reactors.</p>
-          <div class="tags">
-            <span class="tag">BCC / FCC / HCP</span><span class="tag">Diffusion</span><span class="tag">Radiation damage</span><span class="tag">Embrittlement</span>
-          </div>
-        </div>
-        <span class="open">Open</span>
-      </a>
-    </div>
+    <ul class="award-list reveal">
+      <li class="award-row"><div><h3>J.D. Williams Student Paper Competition Winner</h3><p>INMM</p></div><span class="award-date">2026</span></li>
+      <li class="award-row"><div><h3>Thomas F. Plunkett Scholarship</h3><p>College of Engineering</p></div><span class="award-date">2026–27</span></li>
+      <li class="award-row"><div><h3>NRC University Nuclear Leadership Program (UNLP) Scholarship</h3></div><span class="award-date">2024–25, 2025–26</span></li>
+      <li class="award-row"><div><h3>American Nuclear Society Operations &amp; Power Division Scholarship</h3></div><span class="award-date">2026–27</span></li>
+      <li class="award-row"><div><h3>David R. &amp; Anne G. Nerenz UW Marching Band Fund</h3></div><span class="award-date">2026–27</span></li>
+      <li class="award-row"><div><h3>Department of Nuclear Engineering &amp; Engineering Physics Scholarship</h3></div><span class="award-date">2023–24</span></li>
+      <li class="award-row"><div><h3>Promising Future in Physics Award</h3><p>Hagengruber Fund · Department of Physics</p></div><span class="award-date">2023–24</span></li>
+      <li class="award-row"><div><h3>Dorothy Marshall Frawley Scholarship</h3><p>College of Engineering</p></div><span class="award-date">2022–27</span></li>
+      <li class="award-row"><div><h3>Robert J. Mensel Scholarship</h3><p>College of Engineering</p></div><span class="award-date">2022–23</span></li>
+      <li class="award-row"><div><h3>Dean’s Honor List</h3></div><span class="award-date">Fall 2022, Spring 2026</span></li>
+    </ul>
   </section>
 
   <!-- ============================= CONTACT ============================ -->
@@ -543,7 +532,7 @@ Contact</div>
       }
     });
   }, { rootMargin: '-40% 0px -55% 0px' });
-  ['about','research','publications','notes','contact'].forEach(id => {
+  ['about','research','publications','awards','contact'].forEach(id => {
     const el = document.getElementById(id);
     if (el) secObserver.observe(el);
   });
